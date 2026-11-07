@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Оқылған кітап – зерттелген өлке | Электронды оқу сілтемелері</title>
+<style>
+:root{--navy:#12334a;--blue:#1d5870;--gold:#d8a83e;--cream:#fffaf0;--ink:#233746;--muted:#637786;--line:#e6e0d2;--white:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f7f5ef;color:var(--ink);line-height:1.6}
+header{background:linear-gradient(120deg,#102d43,#1d5870);color:white;padding:18px max(5%,calc((100% - 1180px)/2));}
+.brand{display:flex;align-items:center;gap:14px}.logo{width:54px;height:54px;border:2px solid var(--gold);border-radius:50%;display:grid;place-items:center;font-size:27px;color:#f6d88f}
+.brand h1{font-family:Georgia,serif;font-size:clamp(20px,3vw,30px);line-height:1.15;margin:0}.brand p{margin:5px 0 0;color:#e7edf0;font-size:13px}
+nav{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}nav a{color:white;text-decoration:none;border:1px solid #ffffff55;padding:7px 12px;border-radius:20px;font-size:13px}nav a:hover{background:#ffffff20}
+.hero{background:linear-gradient(90deg,#102d43ee,#1b5068cc),url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1800&q=85') center/cover;color:white;padding:68px 5%;text-align:center}
+.hero .inner{max-width:900px;margin:auto}.eyebrow{color:#f3cf7a;letter-spacing:3px;font-weight:bold;font-size:12px}.hero h2{font-family:Georgia,serif;font-size:clamp(32px,5vw,56px);line-height:1.1;margin:12px 0}.hero p{font-size:18px;max-width:720px;margin:0 auto 22px;color:#f3f5f6}.cta{display:inline-block;background:var(--gold);color:#142f40;text-decoration:none;padding:11px 22px;border-radius:24px;font-weight:bold}
+main{max-width:1180px;margin:0 auto;padding:35px 22px}.section{margin:0 0 42px}.section-title{font-family:Georgia,serif;color:var(--navy);font-size:29px;margin:0 0 6px}.sub{color:var(--muted);margin:0 0 20px}
+.intro{display:grid;grid-template-columns:1.3fr .7fr;gap:20px}.panel{background:white;border:1px solid var(--line);border-radius:18px;padding:23px;box-shadow:0 5px 18px #19374a0a}.quote{background:#f3ead6;border-left:4px solid var(--gold);padding:16px 18px;border-radius:10px;font-family:Georgia,serif;font-size:19px;color:#42515a}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}.stat{background:#f5f8f8;border-radius:12px;padding:12px;text-align:center}.stat strong{display:block;color:var(--blue);font-size:23px}.stat span{font-size:12px;color:var(--muted)}
+.grade-tools{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0}.grade-tools input,.grade-tools select{padding:12px 14px;border:1px solid #cbd5d9;border-radius:10px;background:white;font-size:14px;flex:1;min-width:190px}
+.grade-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.grade-card{background:white;border:1px solid var(--line);border-radius:16px;padding:18px;transition:.2s}.grade-card:hover{transform:translateY(-3px);box-shadow:0 8px 22px #17384a12}.grade-head{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:12px}.grade-head h3{margin:0;color:var(--navy);font-size:19px}.tag{font-size:11px;background:#f4ecd9;color:#805d17;border-radius:20px;padding:4px 9px}.grade-card ul{padding-left:18px;margin:8px 0}.grade-card li{margin:6px 0;font-size:14px}.task{font-size:13px;background:#f3f7f7;border-radius:10px;padding:10px;margin-top:12px;color:#34515f}.grade-card[hidden]{display:none}
+.book-shelf{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.book{background:white;border:1px solid var(--line);border-radius:14px;padding:16px}.book-cover{height:118px;border-radius:9px;background:linear-gradient(145deg,#1d5870,#102d43);display:grid;place-items:center;color:#f5d88e;font-family:Georgia,serif;font-size:27px;margin-bottom:12px}.book h3{font-size:15px;margin:0 0 4px;color:var(--navy)}.book p{font-size:13px;color:var(--muted);margin:0}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.step{background:white;border:1px solid var(--line);border-radius:14px;padding:16px}.step b{display:block;color:var(--gold);font-size:24px}.step h3{margin:5px 0;color:var(--navy);font-size:16px}.step p{margin:0;color:var(--muted);font-size:13px}
+.quiz{background:linear-gradient(120deg,#12334a,#1d5870);color:white;border-radius:18px;padding:24px}.quiz h2{color:white}.quiz button{background:var(--gold);border:0;border-radius:9px;padding:10px 16px;font-weight:bold;cursor:pointer}.quiz select{padding:10px;border-radius:8px;border:0;margin:8px 0}.result{font-weight:bold;margin-top:10px}
+footer{background:#102d43;color:#e8eef0;text-align:center;padding:25px 18px;font-size:13px}footer strong{color:#f3cf7a}
+@media(max-width:850px){.grade-grid{grid-template-columns:repeat(2,1fr)}.book-shelf{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.intro{grid-template-columns:1fr}}
+@media(max-width:540px){.grade-grid,.book-shelf,.steps,.stats{grid-template-columns:1fr}.hero{padding:48px 20px}main{padding:28px 15px}.brand{align-items:flex-start}}
+
+.read-links{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 8px}
+.read-btn{display:inline-block;background:#12334a;color:#fff!important;text-decoration:none;padding:8px 12px;border-radius:9px;font-size:13px;font-weight:700;border:1px solid #d8a83e}
+.read-btn:hover{background:#1d5870}
+.read-note{font-size:12px;color:#637786;margin:6px 0}
+
+
+/* Mobile-first usability and interactive grade activities */
+nav{overflow-x:auto;flex-wrap:nowrap;padding:2px 0 8px;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+nav a{white-space:nowrap;flex:0 0 auto}
+button,select,input,textarea{font:inherit}
+button,.read-btn,.cta{min-height:42px;touch-action:manipulation}
+.activity-shell{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;margin-top:18px;box-shadow:0 5px 18px #19374a0a}
+.activity-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.activity-top select{min-width:180px;max-width:100%;padding:12px;border:1px solid #cbd5d9;border-radius:10px;background:#fff}
+.activity-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.activity-card{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fff}
+.activity-card h3{margin:0 0 10px;color:var(--navy)}
+.activity-card textarea{width:100%;min-height:110px;border:1px solid #cbd5d9;border-radius:10px;padding:11px;resize:vertical}
+.quiz-question{padding:12px 0;border-top:1px solid var(--line)}
+.quiz-question:first-of-type{border-top:0}
+.quiz-question p{font-weight:700;margin:4px 0 9px}
+.quiz-option{display:flex;gap:9px;align-items:flex-start;padding:7px 8px;border-radius:8px;cursor:pointer}
+.quiz-option:hover{background:#f3f7f7}
+.quiz-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.quiz-actions button,.activity-button{border:0;background:var(--navy);color:#fff;border-radius:10px;padding:11px 16px;font-weight:700;cursor:pointer}
+.quiz-actions button.secondary{background:#e9eef0;color:var(--navy)}
+.activity-feedback{margin-top:12px;padding:12px;border-radius:10px;background:#f3f7f7;min-height:42px}
+@media(max-width:700px){
+  header{padding:14px 15px}
+  .brand{gap:10px}.logo{width:44px;height:44px;font-size:22px;flex:0 0 auto}
+  nav{gap:7px;margin-top:13px}
+  nav a{font-size:12px;padding:8px 11px}
+  .hero{padding:42px 17px}
+  .hero p{font-size:16px}
+  main{padding:24px 14px}
+  .section-title{font-size:25px}
+  .panel,.activity-shell{padding:16px}
+  .activity-grid{grid-template-columns:1fr}
+  .activity-top{align-items:stretch}
+  .activity-top select{width:100%}
+  .grade-grid,.book-shelf,.steps,.stats{grid-template-columns:1fr}
+  .grade-card{padding:16px}
+}
+
+
+/* Бір файлдық порталдағы авторлар бөлімдерінің стильдері */
+
+:root{--navy:#12334a;--blue:#1d5870;--gold:#d8a83e;--cream:#fffaf0;--ink:#233746;--muted:#637786;--line:#e6e0d2;--white:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f7f5ef;color:var(--ink);line-height:1.6}
+header{background:linear-gradient(120deg,#102d43,#1d5870);color:white;padding:18px max(5%,calc((100% - 1180px)/2));}
+.brand{display:flex;align-items:center;gap:14px}.logo{width:54px;height:54px;border:2px solid var(--gold);border-radius:50%;display:grid;place-items:center;font-size:27px;color:#f6d88f}
+.brand h1{font-family:Georgia,serif;font-size:clamp(20px,3vw,30px);line-height:1.15;margin:0}.brand p{margin:5px 0 0;color:#e7edf0;font-size:13px}
+nav{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}nav a{color:white;text-decoration:none;border:1px solid #ffffff55;padding:7px 12px;border-radius:20px;font-size:13px}nav a:hover{background:#ffffff20}
+.hero{background:linear-gradient(90deg,#102d43ee,#1b5068cc),url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1800&q=85') center/cover;color:white;padding:68px 5%;text-align:center}
+.hero .inner{max-width:900px;margin:auto}.eyebrow{color:#f3cf7a;letter-spacing:3px;font-weight:bold;font-size:12px}.hero h2{font-family:Georgia,serif;font-size:clamp(32px,5vw,56px);line-height:1.1;margin:12px 0}.hero p{font-size:18px;max-width:720px;margin:0 auto 22px;color:#f3f5f6}.cta{display:inline-block;background:var(--gold);color:#142f40;text-decoration:none;padding:11px 22px;border-radius:24px;font-weight:bold}
+main{max-width:1180px;margin:0 auto;padding:35px 22px}.section{margin:0 0 42px}.section-title{font-family:Georgia,serif;color:var(--navy);font-size:29px;margin:0 0 6px}.sub{color:var(--muted);margin:0 0 20px}
+.intro{display:grid;grid-template-columns:1.3fr .7fr;gap:20px}.panel{background:white;border:1px solid var(--line);border-radius:18px;padding:23px;box-shadow:0 5px 18px #19374a0a}.quote{background:#f3ead6;border-left:4px solid var(--gold);padding:16px 18px;border-radius:10px;font-family:Georgia,serif;font-size:19px;color:#42515a}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}.stat{background:#f5f8f8;border-radius:12px;padding:12px;text-align:center}.stat strong{display:block;color:var(--blue);font-size:23px}.stat span{font-size:12px;color:var(--muted)}
+.grade-tools{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0}.grade-tools input,.grade-tools select{padding:12px 14px;border:1px solid #cbd5d9;border-radius:10px;background:white;font-size:14px;flex:1;min-width:190px}
+.grade-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.grade-card{background:white;border:1px solid var(--line);border-radius:16px;padding:18px;transition:.2s}.grade-card:hover{transform:translateY(-3px);box-shadow:0 8px 22px #17384a12}.grade-head{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:12px}.grade-head h3{margin:0;color:var(--navy);font-size:19px}.tag{font-size:11px;background:#f4ecd9;color:#805d17;border-radius:20px;padding:4px 9px}.grade-card ul{padding-left:18px;margin:8px 0}.grade-card li{margin:6px 0;font-size:14px}.task{font-size:13px;background:#f3f7f7;border-radius:10px;padding:10px;margin-top:12px;color:#34515f}.grade-card[hidden]{display:none}
+.book-shelf{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.book{background:white;border:1px solid var(--line);border-radius:14px;padding:16px}.book-cover{height:118px;border-radius:9px;background:linear-gradient(145deg,#1d5870,#102d43);display:grid;place-items:center;color:#f5d88e;font-family:Georgia,serif;font-size:27px;margin-bottom:12px}.book h3{font-size:15px;margin:0 0 4px;color:var(--navy)}.book p{font-size:13px;color:var(--muted);margin:0}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.step{background:white;border:1px solid var(--line);border-radius:14px;padding:16px}.step b{display:block;color:var(--gold);font-size:24px}.step h3{margin:5px 0;color:var(--navy);font-size:16px}.step p{margin:0;color:var(--muted);font-size:13px}
+.quiz{background:linear-gradient(120deg,#12334a,#1d5870);color:white;border-radius:18px;padding:24px}.quiz h2{color:white}.quiz button{background:var(--gold);border:0;border-radius:9px;padding:10px 16px;font-weight:bold;cursor:pointer}.quiz select{padding:10px;border-radius:8px;border:0;margin:8px 0}.result{font-weight:bold;margin-top:10px}
+footer{background:#102d43;color:#e8eef0;text-align:center;padding:25px 18px;font-size:13px}footer strong{color:#f3cf7a}
+@media(max-width:850px){.grade-grid{grid-template-columns:repeat(2,1fr)}.book-shelf{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.intro{grid-template-columns:1fr}}
+@media(max-width:540px){.grade-grid,.book-shelf,.steps,.stats{grid-template-columns:1fr}.hero{padding:48px 20px}main{padding:28px 15px}.brand{align-items:flex-start}}
+
+.read-links{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 8px}
+.read-btn{display:inline-block;background:#12334a;color:#fff!important;text-decoration:none;padding:8px 12px;border-radius:9px;font-size:13px;font-weight:700;border:1px solid #d8a83e}
+.read-btn:hover{background:#1d5870}
+.read-note{font-size:12px;color:#637786;margin:6px 0}
+
+
+    .page-wrap{max-width:1180px;margin:0 auto;padding:30px 22px}
+    .back{display:inline-block;color:white;text-decoration:none;border:1px solid #ffffff66;padding:8px 14px;border-radius:22px;margin-top:12px}
+    .profile-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .profile-grid .grade-card{height:100%}
+    @media(max-width:650px){.profile-grid{grid-template-columns:1fr}}
+    
+
+:root{--navy:#12334a;--blue:#1d5870;--gold:#d8a83e;--cream:#fffaf0;--ink:#233746;--muted:#637786;--line:#e6e0d2;--white:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f7f5ef;color:var(--ink);line-height:1.6}
+header{background:linear-gradient(120deg,#102d43,#1d5870);color:white;padding:18px max(5%,calc((100% - 1180px)/2));}
+.brand{display:flex;align-items:center;gap:14px}.logo{width:54px;height:54px;border:2px solid var(--gold);border-radius:50%;display:grid;place-items:center;font-size:27px;color:#f6d88f}
+.brand h1{font-family:Georgia,serif;font-size:clamp(20px,3vw,30px);line-height:1.15;margin:0}.brand p{margin:5px 0 0;color:#e7edf0;font-size:13px}
+nav{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}nav a{color:white;text-decoration:none;border:1px solid #ffffff55;padding:7px 12px;border-radius:20px;font-size:13px}nav a:hover{background:#ffffff20}
+.hero{background:linear-gradient(90deg,#102d43ee,#1b5068cc),url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1800&q=85') center/cover;color:white;padding:68px 5%;text-align:center}
+.hero .inner{max-width:900px;margin:auto}.eyebrow{color:#f3cf7a;letter-spacing:3px;font-weight:bold;font-size:12px}.hero h2{font-family:Georgia,serif;font-size:clamp(32px,5vw,56px);line-height:1.1;margin:12px 0}.hero p{font-size:18px;max-width:720px;margin:0 auto 22px;color:#f3f5f6}.cta{display:inline-block;background:var(--gold);color:#142f40;text-decoration:none;padding:11px 22px;border-radius:24px;font-weight:bold}
+main{max-width:1180px;margin:0 auto;padding:35px 22px}.section{margin:0 0 42px}.section-title{font-family:Georgia,serif;color:var(--navy);font-size:29px;margin:0 0 6px}.sub{color:var(--muted);margin:0 0 20px}
+.intro{display:grid;grid-template-columns:1.3fr .7fr;gap:20px}.panel{background:white;border:1px solid var(--line);border-radius:18px;padding:23px;box-shadow:0 5px 18px #19374a0a}.quote{background:#f3ead6;border-left:4px solid var(--gold);padding:16px 18px;border-radius:10px;font-family:Georgia,serif;font-size:19px;color:#42515a}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}.stat{background:#f5f8f8;border-radius:12px;padding:12px;text-align:center}.stat strong{display:block;color:var(--blue);font-size:23px}.stat span{font-size:12px;color:var(--muted)}
+.grade-tools{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0}.grade-tools input,.grade-tools select{padding:12px 14px;border:1px solid #cbd5d9;border-radius:10px;background:white;font-size:14px;flex:1;min-width:190px}
+.grade-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.grade-card{background:white;border:1px solid var(--line);border-radius:16px;padding:18px;transition:.2s}.grade-card:hover{transform:translateY(-3px);box-shadow:0 8px 22px #17384a12}.grade-head{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:12px}.grade-head h3{margin:0;color:var(--navy);font-size:19px}.tag{font-size:11px;background:#f4ecd9;color:#805d17;border-radius:20px;padding:4px 9px}.grade-card ul{padding-left:18px;margin:8px 0}.grade-card li{margin:6px 0;font-size:14px}.task{font-size:13px;background:#f3f7f7;border-radius:10px;padding:10px;margin-top:12px;color:#34515f}.grade-card[hidden]{display:none}
+.book-shelf{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.book{background:white;border:1px solid var(--line);border-radius:14px;padding:16px}.book-cover{height:118px;border-radius:9px;background:linear-gradient(145deg,#1d5870,#102d43);display:grid;place-items:center;color:#f5d88e;font-family:Georgia,serif;font-size:27px;margin-bottom:12px}.book h3{font-size:15px;margin:0 0 4px;color:var(--navy)}.book p{font-size:13px;color:var(--muted);margin:0}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.step{background:white;border:1px solid var(--line);border-radius:14px;padding:16px}.step b{display:block;color:var(--gold);font-size:24px}.step h3{margin:5px 0;color:var(--navy);font-size:16px}.step p{margin:0;color:var(--muted);font-size:13px}
+.quiz{background:linear-gradient(120deg,#12334a,#1d5870);color:white;border-radius:18px;padding:24px}.quiz h2{color:white}.quiz button{background:var(--gold);border:0;border-radius:9px;padding:10px 16px;font-weight:bold;cursor:pointer}.quiz select{padding:10px;border-radius:8px;border:0;margin:8px 0}.result{font-weight:bold;margin-top:10px}
+footer{background:#102d43;color:#e8eef0;text-align:center;padding:25px 18px;font-size:13px}footer strong{color:#f3cf7a}
+@media(max-width:850px){.grade-grid{grid-template-columns:repeat(2,1fr)}.book-shelf{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.intro{grid-template-columns:1fr}}
+@media(max-width:540px){.grade-grid,.book-shelf,.steps,.stats{grid-template-columns:1fr}.hero{padding:48px 20px}main{padding:28px 15px}.brand{align-items:flex-start}}
+
+.read-links{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 8px}
+.read-btn{display:inline-block;background:#12334a;color:#fff!important;text-decoration:none;padding:8px 12px;border-radius:9px;font-size:13px;font-weight:700;border:1px solid #d8a83e}
+.read-btn:hover{background:#1d5870}
+.read-note{font-size:12px;color:#637786;margin:6px 0}
+
+
+    .page-wrap{max-width:1180px;margin:0 auto;padding:30px 22px}
+    .back{display:inline-block;color:white;text-decoration:none;border:1px solid #ffffff66;padding:8px 14px;border-radius:22px;margin-top:12px}
+    .profile-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .profile-grid .grade-card{height:100%}
+    @media(max-width:650px){.profile-grid{grid-template-columns:1fr}}
+    
+
+/* Қосымша интерактивті бөлімдер */
+.cta-outline{background:transparent;color:#fff;border:1px solid #f3cf7a;margin-left:8px}
+.value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.value-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 5px 18px #19374a08}.value-card>span{font-size:27px}.value-card h3{color:var(--navy);margin:7px 0}.value-card p{margin:4px 0 10px;color:var(--muted);font-size:14px}
+.map-banner{display:flex;align-items:center;gap:18px;padding:22px;border-radius:18px;color:#fff;background:linear-gradient(120deg,#12334a,#2d6d68);margin-bottom:15px}.map-banner p{margin:2px 0 0;color:#e4eeee}.map-compass{width:62px;height:62px;border:2px solid #e7c36e;border-radius:50%;display:grid;place-items:center;font-size:38px;color:#f4d68f;flex:none}.map-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.map-point{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px}.map-point summary{font-weight:700;color:var(--navy);cursor:pointer;font-size:16px}.map-point p{font-size:14px;margin:10px 0 0}.map-note{margin-top:14px}
+.progress-shell{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px}.progress-head{display:flex;justify-content:space-between;align-items:center;color:var(--navy)}.progress-head strong{font-size:22px;color:#9a741e}.progress-track{height:13px;background:#e9edef;border-radius:20px;overflow:hidden;margin:10px 0 18px}.progress-track div{height:100%;width:0;background:linear-gradient(90deg,#1d5870,#d8a83e);transition:width .25s}.progress-list{display:grid;grid-template-columns:1fr 1fr;gap:10px}.progress-list label{display:flex;gap:9px;align-items:flex-start;background:#f7f8f6;padding:11px;border-radius:10px;font-size:14px}.progress-list input{margin-top:5px;accent-color:#1d5870}
+@media(max-width:700px){.value-grid,.map-grid,.progress-list{grid-template-columns:1fr}.cta-outline{margin:10px 0 0}.map-banner{align-items:flex-start}}
+
+
+/* Ұлттық ою-өрнек безендіруі */
+.ornament-band{height:34px;display:flex;align-items:center;justify-content:center;gap:clamp(10px,3vw,34px);overflow:hidden;color:#d9ad52;background:linear-gradient(90deg,#102b36,#174b49 48%,#102b36);border-top:1px solid #d9ad5266;border-bottom:1px solid #d9ad5266;letter-spacing:clamp(4px,1.3vw,14px);font-family:Georgia,serif;font-size:22px;text-shadow:0 1px 8px #e7c56a55;white-space:nowrap}
+.ornament-band span:nth-child(2n){color:#f2d995;font-size:17px}
+header{position:relative;overflow:hidden}
+header:after{content:"❧";position:absolute;right:22px;top:6px;font-size:58px;line-height:1;color:#d8a83e22;transform:rotate(28deg);pointer-events:none}
+.hero{position:relative;overflow:hidden}
+.hero:after{content:"❧";position:absolute;right:clamp(10px,5vw,70px);bottom:-34px;font-size:clamp(110px,20vw,230px);line-height:1;color:#f4d78d13;transform:rotate(-25deg);pointer-events:none}
+.section{position:relative}
+.section:after{content:"❖";position:absolute;right:3px;top:2px;color:#c69a452b;font-size:24px;pointer-events:none}
+.section-title:after{content:"  ❧";color:#c69a45;font-size:.72em;margin-left:7px}
+.panel,.grade-card,.value-card,.book,.step{position:relative}
+.panel:before,.grade-card:before,.value-card:before{content:"❖";position:absolute;right:13px;bottom:7px;color:#c69a4526;font-size:22px;pointer-events:none}
+footer:before{content:"❧  ❖  ❧  ❖  ❧";display:block;text-align:center;color:#f2d995;font-size:23px;letter-spacing:12px;padding:14px 0 0}
+@media(max-width:520px){.ornament-band{height:27px;font-size:17px;gap:7px}.section:after{font-size:18px}.section-title:after{font-size:.65em}}
+
+
+.grade-head h3 a{color:var(--navy);text-decoration:none;border-bottom:1px dashed var(--gold)}.grade-head h3 a:hover{color:#9a6a13}.book h3 a{color:var(--navy);text-decoration:none}.book h3 a:hover{text-decoration:underline}.book-featured{border:2px solid var(--gold);box-shadow:0 8px 24px #d8a83e22}.author-reading-link{margin-bottom:4px}
+</style>
+<style>
+.passport-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}
+.passport-form-grid label{display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:14px;color:var(--ink,#26334a)}
+.passport-form-grid .wide{grid-column:1/-1}
+.passport-form-grid input,.passport-form-grid textarea,.passport-form-grid select{width:100%;box-sizing:border-box;border:1px solid #cbd5e1;border-radius:10px;padding:11px 12px;font:inherit;font-weight:400;background:#fff;color:#1f2937}
+.passport-form-grid textarea{resize:vertical;min-height:64px}
+@media(max-width:650px){.passport-form-grid{grid-template-columns:1fr}.passport-form-grid .wide{grid-column:auto}}
+@media print{.passport-form-grid input,.passport-form-grid textarea,.passport-form-grid select{border:0;border-bottom:1px solid #777;border-radius:0;padding:5px 0}}
+</style>
+<style id="premium-ayagoz-design">
+:root{--navy:#102b36;--blue:#17645f;--gold:#e2b34f;--cream:#fffaf0;--ink:#20343b;--muted:#667a7c;--line:#e8dfca;--white:#fff;--coral:#d97957;--mint:#dceee5}
+html{scroll-padding-top:95px}
+body{background:radial-gradient(circle at 8% 12%,#e8f2e9 0,transparent 24%),radial-gradient(circle at 92% 32%,#f8ead4 0,transparent 22%),#f8f6ef;color:var(--ink)}
+header{position:relative;overflow:hidden;background:linear-gradient(115deg,#0d2732 0%,#14534f 58%,#1c7165 100%);box-shadow:0 8px 28px #0d273233}
+header:before,header:after{content:"✦  ❋  ✦";position:absolute;color:#f2d48a22;font-size:72px;letter-spacing:18px;pointer-events:none;transform:rotate(-18deg)}header:before{right:-15px;top:-24px}header:after{left:32%;bottom:-46px;font-size:52px}
+.brand{position:relative;z-index:1}.logo{background:linear-gradient(145deg,#f5d98d,#c58c31);color:#143d3d;box-shadow:0 0 0 6px #f3d78b20,0 5px 20px #0003;border:2px solid #fff1c8;font-weight:bold}
+.brand h1{letter-spacing:.2px;text-shadow:0 2px 10px #0003}.brand p{letter-spacing:.35px}
+nav{position:relative;z-index:2;gap:8px}nav a{background:#ffffff0d;border-color:#f7e5b477;backdrop-filter:blur(8px);transition:.22s ease;font-weight:600}nav a:hover{background:#f0c86d;color:#153b3a;border-color:#f0c86d;transform:translateY(-2px)}
+.hero{position:relative;isolation:isolate;padding:clamp(66px,9vw,112px) 5%;background-image:linear-gradient(115deg,#092631f2 0%,#12534fe8 58%,#164b55c9 100%),url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=85');background-position:center;background-size:cover}
+.hero:before{content:"";position:absolute;inset:18px;border:1px solid #f2d58a55;border-radius:28px;pointer-events:none;z-index:-1}.hero .inner{position:relative}.eyebrow{display:inline-block;padding:7px 14px;border:1px solid #f0d28b88;border-radius:30px;background:#ffffff12;letter-spacing:2.5px}.hero h2{max-width:900px;margin:20px auto 14px;text-shadow:0 4px 22px #0005}.hero p{line-height:1.75;color:#f6f3e9}.cta{background:linear-gradient(135deg,#f4d78d,#dba846);box-shadow:0 8px 22px #0003;border:1px solid #ffe9ae;transition:.2s}.cta:hover{transform:translateY(-3px);box-shadow:0 12px 28px #0004}
+main{padding-top:44px}.section{position:relative;margin-bottom:54px;scroll-margin-top:100px}.section-title{display:flex;align-items:center;gap:13px;font-size:clamp(24px,3vw,32px);letter-spacing:-.5px}.section-title:before{content:"";width:7px;height:34px;border-radius:9px;background:linear-gradient(#e8bd61,#1b7064);box-shadow:0 3px 9px #b38c3d44;flex:none}.sub{max-width:850px;line-height:1.7}.panel,.grade-card,.book,.step{border:1px solid #e7dfcb;box-shadow:0 8px 26px #23423a0b;transition:transform .22s,box-shadow .22s,border-color .22s}.panel{border-radius:22px;background:linear-gradient(145deg,#fff 0%,#fffdf7 100%)}.panel:hover,.grade-card:hover,.book:hover,.step:hover{border-color:#d9b65f;box-shadow:0 14px 32px #1b51451a;transform:translateY(-4px)}
+.quote{background:linear-gradient(120deg,#f8efd9,#e8f2e9);border-left:5px solid var(--gold);color:#274a48;box-shadow:inset 0 0 0 1px #e9d9b4}.stats{gap:12px}.stat{background:linear-gradient(145deg,#eff7f2,#fff9e9);border:1px solid #e3e9d9}.stat strong{color:#17645f}
+.grade-tools input,.grade-tools select,.quiz select{border:1px solid #d6d9c9;box-shadow:0 3px 10px #1c423b0a}.grade-tools input:focus,.grade-tools select:focus{outline:3px solid #d9b65f55;border-color:#b98b34}
+.grade-grid{gap:18px}.grade-card{border-radius:20px;position:relative;overflow:hidden}.grade-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(#e4b950,#27766a)}.grade-head h3{color:#15534f}.tag{background:#f7edcf;color:#775515;font-weight:700}.task{background:linear-gradient(120deg,#eff7f3,#fff8e8);border:1px dashed #c9d9c9}
+.book-shelf{gap:18px}.book{border-radius:18px;overflow:hidden;position:relative}.book-cover{height:138px;border-radius:12px;background:radial-gradient(circle at 80% 18%,#e4c36f55,transparent 28%),linear-gradient(145deg,#1c7165,#102b36 75%);box-shadow:inset 0 0 0 1px #ffffff25;position:relative}.book-cover:after{content:"❋";position:absolute;right:12px;bottom:4px;color:#f0d28b55;font-size:42px}.book h3{color:#14534f}.steps{gap:15px}.step{border-radius:18px;background:linear-gradient(145deg,#fff,#fbf8ed)}.step b{color:#c18d31}
+.quiz{position:relative;overflow:hidden;border:1px solid #d5b15e;background:radial-gradient(circle at 92% 12%,#ffffff20,transparent 25%),linear-gradient(120deg,#102b36,#17645f);box-shadow:0 15px 35px #123c3b26}.quiz:after{content:"✦";position:absolute;right:20px;top:-28px;font-size:130px;color:#ffffff0d;pointer-events:none}.quiz button{background:linear-gradient(135deg,#f4d78d,#d7a33e);color:#183c3c;box-shadow:0 4px 12px #0002;transition:.2s}.quiz button:hover{transform:translateY(-2px);filter:brightness(1.04)}
+#young-explorer-passport .panel,#my-progress .panel{border:1px solid #d9c58d;background:linear-gradient(145deg,#fffdf6,#eef6ef);box-shadow:0 12px 32px #254b3d12}
+#my-progress{background:linear-gradient(135deg,#eaf3edaa,#fff7e6aa);border:1px solid #e5d8b8;border-radius:26px;padding:25px;margin-left:-10px;margin-right:-10px}#my-progress .section-title:before{background:linear-gradient(#d7a33e,#d97957)}
+#progressBar{background:linear-gradient(90deg,#d6a13b,#1d776b)!important;border-radius:99px;box-shadow:0 2px 8px #1a665b44}
+footer{background:radial-gradient(circle at 50% 0,#1d7165,#102b36 65%);border-top:3px solid #d7a33e;position:relative}footer strong{color:#f4d78d}
+button{cursor:pointer}input,select,textarea{accent-color:#17645f}
+::selection{background:#e8c66e;color:#173b3a}
+@media(max-width:850px){header{padding:16px 5%}.hero{padding:66px 6%}.hero:before{inset:9px}.section-title{line-height:1.2}#my-progress{margin-left:0;margin-right:0;padding:18px}}
+@media(max-width:520px){.brand{align-items:flex-start}.logo{width:46px;height:46px;flex:none}.brand h1{font-size:20px}.brand p{font-size:11px}nav{gap:6px}nav a{font-size:11px;padding:6px 9px}.hero h2{font-size:34px}.hero p{font-size:15px}.section{margin-bottom:40px}.panel{padding:17px}.grade-grid{gap:11px}.grade-card{padding:14px}.book{padding:12px}.book-cover{height:110px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+<style>
+#book-reviews form{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;max-width:900px}
+#book-reviews label{display:flex;flex-direction:column;gap:6px;font-weight:600;color:var(--ink,#183b32)}
+#book-reviews input,#book-reviews select,#book-reviews textarea{width:100%;padding:11px;border:1px solid #c9d8cc;border-radius:10px;background:#fff;color:#183b32;font:inherit}
+#book-reviews textarea{min-height:100px;grid-column:1/-1}
+#book-reviews button{padding:12px 18px;border:0;border-radius:10px;background:#174d3b;color:#fff;font-weight:700;cursor:pointer}
+#book-reviews .review-card{padding:16px;border:1px solid #d9e4d9;border-radius:14px;background:#fff;box-shadow:0 5px 18px #153b2410}
+#book-reviews .review-card p{white-space:pre-wrap}
+.recommendation-list{margin-top:14px;background:#f5f7ef;border-left:4px solid #b38a3d}
+.recommendation-list li{margin:7px 0}
+</style><style>
+.portal-group{margin:30px auto 42px;max-width:1180px;padding:26px 22px;border:1px solid #e6dfcf;border-radius:24px;background:linear-gradient(145deg,#fffdf7 0%,#f8f3e7 100%);box-shadow:0 10px 28px rgba(26,58,43,.07)}
+.portal-group-title{display:flex;align-items:center;gap:12px;margin:0 0 22px;color:#174b3b;font-size:clamp(21px,3vw,29px);line-height:1.25}
+.portal-group-title:before{content:"";width:7px;height:34px;border-radius:8px;background:#c99b3b;display:inline-block;flex:0 0 7px}
+.portal-group .section{margin-top:20px}
+.suggestion-panel{background:#fff;border:1px solid #e7dfcf;border-radius:18px;padding:22px;margin:22px 0}
+.suggestion-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.suggestion-panel label{display:block;font-weight:700;color:#234638;margin:10px 0 6px}
+.suggestion-panel input,.suggestion-panel select,.suggestion-panel textarea{width:100%;padding:12px;border:1px solid #d8d2c5;border-radius:10px;font:inherit;background:#fffdf9}
+.suggestion-panel textarea{min-height:110px;resize:vertical}
+.suggestion-panel button{margin-top:14px;border:0;border-radius:12px;padding:12px 20px;background:#174b3b;color:white;font-weight:700;cursor:pointer}
+.suggestion-item{padding:13px 15px;margin-top:10px;border-radius:12px;background:#f6f2e8;border-left:4px solid #c99b3b}
+@media(max-width:650px){.portal-group{padding:18px 13px;margin:20px 10px;border-radius:17px}.portal-group-title{font-size:21px}}
+</style></head>
+<body>
+<header>
+<div class="brand">
+<div class="logo">❧</div>
+<div><h1>Оқылған кітап – зерттелген өлке</h1><p>Мектептің әдеби-өлкетану танымдық порталы</p></div>
+</div>
+<nav><a href="#section-1">1. Портал және құндылықтар</a><a href="#section-2">2. Аягөз мұрасы</a><a href="#section-3">3. Кітап әлемі</a><a href="#section-4">4. Зерттеу және таным</a><a href="#section-5">5. Ұсыныстар және жоспар</a><a href="#section-6">6. Менің жетістіктерім</a></nav>
+</header>
+<div aria-hidden="true" class="ornament-band"><span>❧</span><span>❖</span><span>❧</span><span>✥</span><span>❧</span><span>❖</span><span>❧</span></div>
+<section class="hero">
+<div class="inner"><div class="eyebrow">ОҚЫ • ЗЕРТТЕ • ТАНЫ • ТАНЫТ</div>
+<h2>Кітап арқылы туған өлкеңді таны!</h2>
+<p>Аягөз өңірінің табиғатын, туған жерін, тарихын және осы өлкемен байланысты қаламгерлер мұрасын кітап арқылы танып-зерттейтін ортақ білім кеңістігі.</p>
+<a class="cta" href="#grades">Сыныбыңды таңда</a> <a class="cta cta-outline" href="#ayagoz-map">Өлкені зертте</a></div>
+</section>
+<main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="portal-group" id="section-1"><h2 class="portal-group-title">1. Портал туралы және құндылықтар</h2><section class="section" id="about">
+<h2 class="section-title">Портал туралы</h2><p class="sub">1–11-сынып оқушыларына арналған Аягөз өңірінің әдебиеті мен туған өлке мұрасын оқып, зерттеуге арналған ортақ білім порталы.</p>
+<div class="intro">
+<div class="panel"><p><b>«Оқылған кітап – зерттелген өлке»</b> порталының мақсаты – оқушылардың кітап оқуға қызығушылығын арттыру, туған өлкенің тарихын, табиғатын, тұлғалары мен мәдениетін әдеби шығармалар арқылы таныту.</p>
+<p>Әр оқушы өз сыныбына арналған кітаптарды таңдап, оқыған шығармасы бойынша сұрақтарға жауап береді, шағын зерттеу жүргізеді және шығармашылық жұмысын ұсынады.</p>
+<div class="stats"><div class="stat"><strong>11</strong><span>сынып деңгейі</span></div><div class="stat"><strong>4</strong><span>зерттеу бағыты</span></div><div class="stat"><strong>1</strong><span>ортақ өлке</span></div></div></div>
+<div class="panel"><div class="quote">«Туған жердің тарихын тану – өз тамырыңды тану»</div><p><b>Негізгі ұстаным:</b> оқушы дайын ақпаратты ғана қабылдамай, оқиды, сұрақ қояды, салыстырады, зерттейді және өз ойын жеткізеді.</p></div>
+</div>
+</section><section class="section" id="value-lab">
+<h2 class="section-title">«Адал азамат» құндылықтар зертханасы</h2><p class="sub">Әр оқылған шығарма мен зерттеу жұмысын адамгершілік құндылықтармен байланыстырып қарастыр.</p>
+<div class="value-grid">
+<article class="value-card"><span>🇰🇿</span><h3>Ұлттық мүдде</h3><p>Туған жердің тарихын, тілін, әдебиеті мен табиғи мұрасын таны.</p><b>Тапсырма:</b> Аягөз туралы оқыған шығармаңнан туған жерге құрметті білдіретін ойды тап.</article>
+<article class="value-card"><span>🤝</span><h3>Бірлік</h3><p>Ортақ мақсатқа жету үшін бірлесіп ізденіп, пікір алмас.</p><b>Тапсырма:</b> Топпен «Аягөздің рухани мұрасы» атты шағын постер әзірле.</article>
+<article class="value-card"><span>🧭</span><h3>Ар-ұят</h3><p>Шындықты айту, өзгенің еңбегін құрметтеу және әділ болу.</p><b>Тапсырма:</b> Зерттеуіңде пайдаланған дереккөздерді толық көрсет.</article>
+<article class="value-card"><span>🌱</span><h3>Жауапкершілік</h3><p>Табиғатты аялау, кітапты күтіп ұстау және тапсырманы соңына дейін орындау.</p><b>Тапсырма:</b> Өлке табиғатын қорғауға арналған 3 ұсыныс жаз.</article>
+<article class="value-card"><span>📚</span><h3>Талап</h3><p>Үнемі оқу, іздену, жаңа білім мен дағдыны дамыту.</p><b>Тапсырма:</b> Бір кітапты таңдап, оқырман күнделігіне пікір жаз.</article>
+</div></section></section><section class="portal-group" id="section-2"><h2 class="portal-group-title">2. Аягөз мұрасы</h2><section class="section" id="ayagoz-map">
+<h2 class="section-title">Аягөзді таны – зерттеу нүктелері</h2><p class="sub">Төмендегі нүктелер – оқушыға арналған өлкетану бағыттары. Әр карточканы ашып, зерттеу сұрағын орында. Бұл – танымдық сызба, дәл координаттары көрсетілген географиялық карта емес.</p>
+<div class="map-banner"><div class="map-compass">✥</div><div><b>АЯГӨЗ ӨҢІРІ</b><p>Табиғат • Тарих • Әдебиет • Туған жер</p></div></div>
+<div class="map-grid">
+<details class="map-point"><summary>🌊 Аягөз өзені</summary><p><b>Зерттеу бағыты:</b> су нысандары және табиғатты қорғау.</p><p><b>Сұрақ:</b> Өзеннің жергілікті табиғат пен елді мекен өміріндегі маңызы қандай?</p><p><b>Жұмыс:</b> Өзен туралы 3 дерек жинап, дереккөзін көрсет.</p></details>
+<details class="map-point"><summary>⛰️ Көгілдір тау</summary><p><b>Зерттеу бағыты:</b> жер бедері мен туған өлкенің көрікті орындары.</p><p><b>Сұрақ:</b> Бұл нысан туралы қандай дерек пен жергілікті әңгімелер бар?</p><p><b>Жұмыс:</b> Сипаттама жаз немесе сурет-карта жаса.</p></details>
+<details class="map-point"><summary>💧 Мамырсу</summary><p><b>Зерттеу бағыты:</b> табиғи нысандар және өлке атаулары.</p><p><b>Сұрақ:</b> «Мамырсу» атауының шығуы туралы қандай дерек бар?</p><p><b>Жұмыс:</b> Кемінде екі дереккөзді салыстыр; дәлелсіз аңызды факт ретінде берме.</p></details>
+<details class="map-point"><summary>🌾 Ақшатау</summary><p><b>Зерттеу бағыты:</b> ауыл табиғаты, өсімдіктері және туған жер тарихы.</p><p><b>Сұрақ:</b> Ақшатау өңіріне тән қандай өсімдіктер мен табиғи ерекшеліктер бар?</p><p><b>Жұмыс:</b> Бір өсімдіктің «табиғат паспортын» жаса.</p></details>
+</div><div class="panel map-note"><b>Зерттеу әдебі:</b> жер-су атауы, тарихи оқиға немесе табиғи нысан туралы мәліметті кітап, өлкетану еңбегі, ресми ресурс не сұхбат арқылы тексер. Дерек табылмаса, оны ойдан толықтырма.</div>
+</section><section class="section" id="author-categories">
+<h2 class="section-title">Аягөз өңірінің ақын-жазушылары</h2>
+<p class="sub">Порталда дереккөздермен расталған ақындар, жыраулар, жазушылар және өлкетану тақырыбында қалам тербеген авторлар топтастырылды. Әр тұлғаның туған жері мен Аягөз өңіріне байланысы жеке көрсетіледі; шығармаларының атауы әдеби және кітапханалық деректерге сүйеніп берілген.</p>
+<div class="grade-grid">
+<a class="grade-card" href="#poets" style="display:block;text-decoration:none;color:inherit">
+<div class="book-cover">✍</div><h3>1. Ақындар мен жыраулар</h3>
+<p>Дулат Бабатайұлы, Төлеу Көбдіков, Жұмаш Кенебай, Мыңбай Рәш және басқа қаламгерлер. Өмірбаяны, шығармалары, дереккөздері.</p>
+<span class="read-btn">Бөлімге өту ↓</span>
+</a>
+<a class="grade-card" href="#writers" style="display:block;text-decoration:none;color:inherit">
+<div class="book-cover">📚</div><h3>2. Жазушылар мен қаламгерлер</h3>
+<p>Мұхтар Мағауин, Толымбек Әбдірайым, Таласбек Әсемқұлов, Хасен Әдібаев, Бақытөмір Шалғынбай және басқа тұлғалар.</p>
+<span class="read-btn">Бөлімге өту ↓</span>
+</a>
+</div>
+<p class="read-note">Ескерту: «Аягөзден шыққан» және «Аягөз өңірімен байланысы бар» деген мәліметтер ажыратылып беріледі. Дереккөздер карточкалардың ішінде көрсетілген.</p>
+</section><section aria-label="Ақындар мен жыраулар бөлімі" class="section page-wrap">
+<h2 class="section-title" id="poets">Ақындар мен жыраулар</h2>
+<p class="sub">Әр тұлғаның қысқаша өмірбаяны, негізгі шығармалары және тексерілген анықтамалық не оқу сілтемелері берілді. Сілтемелер жаңа бетте ашылады. Автордың атын немесе «онлайн оқу» сілтемесін бассаңыз, қолжетімді электронды шығарма, авторлық бет не кітапхана дерегі жаңа бетте ашылады.</p>
+<div class="profile-grid"><article class="grade-card">
+<div class="grade-head"><h3><a href="https://adebiportal.kz/kz/books/view/epub__741" rel="noopener noreferrer" target="_blank" title="Шығармаларын онлайн оқу">Дулат Бабатайұлы ↗</a></h3><span class="tag">Ақын, жырау</span></div>
+<p>1802 жылы қазіргі Абай облысы, Аягөз ауданының Сандықтас өңірінде дүниеге келген. 1871 жылы қайтыс болғаны бірқатар әдеби дереккөзде көрсетіледі. Жастайынан сауат ашып, арабша хат таныған. Шығармаларында ел тағдыры, заман сипаты, адамгершілік пен бірлік мәселелерін жырлаған.</p>
+<b>Негізгі шығармалары:</b><ul><li>«Өсиетнама»</li><li>«Бейшара менің қазағым»</li><li>«Аягөз»</li></ul>
+<div class="task">Зерттеу тапсырмасы: «Өсиетнама» жинағындағы өсиет пен заман туралы ойларды тауып, бүгінгі өмірмен байланыстырып түсіндір.</div>
+<div class="read-links"><a class="read-btn author-reading-link" href="https://adebiportal.kz/kz/books/view/epub__741" rel="noopener noreferrer" target="_blank">Шығармаларын онлайн оқу ↗</a><a class="read-btn" href="https://adebiportal.kz/kz/authors/view/1003" rel="noopener noreferrer" target="_blank">Өмірбаяны – Әдеби портал ↗</a><a class="read-btn" href="https://adebiportal.kz/kz/books/view/epub__741" rel="noopener noreferrer" target="_blank">Шығармалары – онлайн оқу ↗</a><a class="read-btn" href="https://kitaphana.kz/literaturnui/ayaguz/5646-2015-06-23-04-00-01.html" rel="noopener noreferrer" target="_blank">Өмірі мен мұрасы – кітапхана ↗</a></div><p class="read-note">Ескерту: өмірден өткен жылы дереккөздерде 1871 және 1874 деп әртүрлі беріледі. Порталда Әдеби порталдағы 1871 жылғы мәлімет алынды.</p>
+</article><article class="grade-card">
+<div class="grade-head"><h3><a href="https://esimder.pushkinlibrary.kz/kz/pisateli-i-poetykz/747-.html" rel="noopener noreferrer" target="_blank" title="Кітапханадағы шығармалары мен жинақтары туралы дерек">Төлеу Көбдіков ↗</a></h3><span class="tag">Халық ақыны</span></div>
+<p>1874 жылы қазіргі Абай облысы аумағындағы Шар өңірінде дүниеге келген ақын. 1954 жылы «Қазақ КСР-нің халық ақыны» атағын алған. Ел өмірі, тарихи кезеңдер, Отан мен еңбек тақырыптарында өлеңдер мен толғаулар жазған.</p>
+<b>Негізгі шығармалары:</b><ul><li>«Сарыарқа»</li><li>«1916»</li><li>«Жеңіс серті»</li></ul>
+<div class="task">Зерттеу тапсырмасы: «1916» немесе «Сарыарқа» шығармасындағы тарихи кезеңді анықтап, ақынның көзқарасын сипатта.</div>
+<div class="read-links"><a class="read-btn author-reading-link" href="https://esimder.pushkinlibrary.kz/kz/pisateli-i-poetykz/747-.html" rel="noopener noreferrer" target="_blank">Кітапханадағы шығармалары мен жинақтары туралы дерек ↗</a><a class="read-btn" href="https://esimder.pushkinlibrary.kz/kz/pisateli-i-poetykz/747-.html" rel="noopener noreferrer" target="_blank">Өмірбаяны мен шығармалары – А.С. Пушкин атындағы кітапхана ↗</a></div><p class="read-note">Кітапхана бетінде ақынның жинақтары мен мерзімді басылымдардағы жарияланымдары көрсетілген.</p>
+</article><article class="grade-card">
+<div class="grade-head"><h3><a href="https://my.mail.ru/community/akchataum-aulum/59DFF593A6686B5E.html" rel="noopener noreferrer" target="_blank" title="«Аягөз» тарихи романын онлайн оқу">Жұмаш Айтжұманұлы Кенебай ↗</a></h3><span class="tag">Ақын, тележурналист</span></div>
+<p>Қазақ энциклопедиясындағы дерек бойынша Жұмаш Кенебай – Жұмаш Көкбөрі деген атпен де танылған ақын, тележурналист және қоғам қайраткері. «Аягөз» атты өлеңмен жазылған тарихи романның авторы. Телевизия саласында редактор және бағдарлама жүргізушісі қызметтерін атқарған.</p>
+<b>Негізгі шығармалары:</b><ul><li>«Аягөз» – тарихи роман</li><li>«Аққу-жүрек»</li><li>«Бастау»</li></ul>
+<div class="task">Зерттеу тапсырмасы: «Аягөз» тарихи романында туған өлке тарихы қалай көрініс табатынын зертте.</div>
+<div class="read-links"><a class="read-btn author-reading-link" href="https://my.mail.ru/community/akchataum-aulum/59DFF593A6686B5E.html" rel="noopener noreferrer" target="_blank">«Аягөз» тарихи романын онлайн оқу ↗</a><a class="read-btn" href="https://kk.encyclopedia.kz/index.php/Жұмаш_Айтжұманұлы_Кенебай" rel="noopener noreferrer" target="_blank">Өмірбаяны мен шығармалары – Қазақ энциклопедиясы ↗</a></div>
+</article><article class="grade-card">
+<div class="grade-head"><h3><a href="https://adebiportal.kz/kz/books/view/topzargan-elim__3749" rel="noopener noreferrer" target="_blank" title="«Топжарған елім» электронды кітабын оқу">Мыңбай Рәш ↗</a></h3><span class="tag">Ақын, сатирик</span></div>
+<p>1930 жылы 19 қазанда Семей облысы, бұрынғы Шұбартау ауданының 10-ауылында (қазіргі Аягөз ауданы) туған. Абай атындағы Қазақ педагогикалық институтының тіл және әдебиет факультетін бітірген. Баспасөзде, баспа саласында және Қазақстан Жазушылар одағында қызмет еткен. Лирикалық өлеңдермен қатар сатира, фельетон, мысал жанрларында еңбек еткен.</p>
+<b>Негізгі шығармалары:</b><ul><li>«Алғашқы борозда»</li><li>«Терек пен тікенек»</li><li>«Қанатты қиял»</li></ul>
+<div class="task">Зерттеу тапсырмасы: «Терек пен тікенек» немесе «Қисық айна» атауына сүйеніп, сатираның қоғамдағы қызметі туралы ой жаз.</div>
+<div class="read-links"><a class="read-btn author-reading-link" href="https://adebiportal.kz/kz/books/view/topzargan-elim__3749" rel="noopener noreferrer" target="_blank">«Топжарған елім» электронды кітабын оқу ↗</a><a class="read-btn" href="https://adebiportal.kz/kz/authors/view/1444" rel="noopener noreferrer" target="_blank">Өмірбаяны мен шығармалары – Әдеби портал ↗</a></div>
+</article><article class="grade-card">
+<div class="grade-head"><h3><a href="https://priobibl.kz/kk/detskaya-stranichka/ura-novye-knigi-pribyli/ermek-dayyrbay-kkzhiegmn-kktem---" rel="noopener noreferrer" target="_blank" title="«Көкжиегімнің көктемі» кітабы туралы кітапхана дерегі">Ермек Дайырбай ↗</a></h3><span class="tag">Ақын</span></div>
+<p>Ермек Тұрсынұлы Дайырбай – «Шабыт» халықаралық фестивалінің лауреаты, халықаралық, республикалық және облыстық жыр мүшәйраларының жеңімпазы. Қалалық кітапхана жариялаған таныстырылымда оның әр жылдары жазған өлеңдері «Көкжиегімнің көктемі» жинағына топтастырылғаны айтылады.</p>
+<b>Негізгі шығармалары:</b><ul><li>«Көкжиегімнің көктемі»</li></ul>
+<div class="task">Зерттеу тапсырмасы: Жинақтан туған жер мен табиғатқа арналған өлеңді таңдап, негізгі ойын анықта.</div>
+<div class="read-links"><a class="read-btn author-reading-link" href="https://priobibl.kz/kk/detskaya-stranichka/ura-novye-knigi-pribyli/ermek-dayyrbay-kkzhiegmn-kktem---" rel="noopener noreferrer" target="_blank">«Көкжиегімнің көктемі» кітабы туралы кітапхана дерегі ↗</a><a class="read-btn" href="https://priobibl.kz/kk/detskaya-stranichka/ura-novye-knigi-pribyli/ermek-dayyrbay-kkzhiegmn-kktem---" rel="noopener noreferrer" target="_blank">«Көкжиегімнің көктемі» кітабы туралы – Приозерск қалалық кітапханасы ↗</a></div><p class="read-note">Ескерту: ашық кітапхана дерегі жинақ туралы мәлімет береді; ақынның туған жері мен толық өмірбаяны бұл деректе көрсетілмеген.</p>
+</article><article class="grade-card">
+<div class="grade-head"><h3><a href="https://akberen.com/" rel="noopener noreferrer" target="_blank" title="Автордың ресми сайтындағы шығармаларын оқу">Ақберен Елгезек ↗</a></h3><span class="tag">Ақын, жазушы</span></div>
+<p>1980 жылы Алматы қаласында дүниеге келген. Әл-Фараби атындағы Қазақ ұлттық университетінің тарих факультетін бітірген. Қазақстан Жазушылар одағының мүшесі, «Дарын» мемлекеттік жастар сыйлығының иегері. Аягөз өңірімен байланысы туралы дерек расталмағандықтан, бұл порталға жалпы қазақ әдебиеті өкілі ретінде енгізілді.</p>
+<b>Негізгі шығармалары:</b><ul><li>«Шаһар кезген»</li><li>«Сафарнама»</li><li>«Сені ешкімге бермеймін, сұрамасын!»</li></ul>
+<div class="task">Зерттеу тапсырмасы: Ресми сайтынан бір өлеңін немесе прозалық шығармасын таңдап, автордың тілдік ерекшелігін байқа.</div>
+<div class="read-links"><a class="read-btn author-reading-link" href="https://akberen.com/" rel="noopener noreferrer" target="_blank">Автордың ресми сайтындағы шығармаларын оқу ↗</a><a class="read-btn" href="https://adebiportal.kz/kz/authors/view/1164" rel="noopener noreferrer" target="_blank">Өмірбаяны – Әдеби портал ↗</a><a class="read-btn" href="https://akberen.com/" rel="noopener noreferrer" target="_blank">Автордың ресми сайты: өлеңдері, прозасы, кітаптары ↗</a></div><p class="read-note">Ескерту: автордың Алматыда туғаны туралы өмірбаяндық дерек бар; Аягөз өңірінен шыққан тұлғалар қатарына жатқызылмайды.</p>
+</article><article class="grade-card">
+<div class="grade-head"><h3><a href="https://adebiportal.kz/kz/books/view/nesipbek-aitulynyn-sygarmalary-v-tom__1007" rel="noopener noreferrer" target="_blank" title="Шығармаларының электронды томын оқу">Несіпбек Айтұлы ↗</a></h3><span class="tag">Ақын, аудармашы</span></div>
+<p>1950 жылы Шығыс Түркістанның Тарбағатай аймағында дүниеге келген. Еңбек жолын Шұбартау аудандық «Жаңа өмір» газетінде бастаған. Балалар әдебиеті, поэзия және тарихи-эпикалық дастандар жанрында еңбек еткен. 2012 жылы Мемлекеттік сыйлықтың лауреаты атанған.</p>
+<b>Негізгі шығармалары:</b><ul><li>«Балабақшаға барар жолда»</li><li>«Желкілдеп өскен құрақтай»</li><li>«Күміс күйме»</li></ul>
+<div class="task">Зерттеу тапсырмасы: Ақынның балаларға арналған бір өлеңін таңдап, оның тәрбиелік мәнін түсіндір.</div>
+<div class="read-links"><a class="read-btn author-reading-link" href="https://adebiportal.kz/kz/books/view/nesipbek-aitulynyn-sygarmalary-v-tom__1007" rel="noopener noreferrer" target="_blank">Шығармаларының электронды томын оқу ↗</a><a class="read-btn" href="https://adebiportal.kz/kz/authors/view/1214" rel="noopener noreferrer" target="_blank">Өмірбаяны – Әдеби портал ↗</a><a class="read-btn" href="https://adebiportal.kz/kz/authors/book/1214" rel="noopener noreferrer" target="_blank">Кітаптары – Әдеби портал ↗</a></div><p class="read-note">Ескерту: ақынның Шұбартау аудандық газетінде еңбек еткені – Аягөз өңірімен кәсіби байланысын көрсетеді; туған жері Тарбағатай аймағы деп берілген.</p>
+</article></div>
+<div class="panel"><b>Маңызды:</b> «Аягөзде туған», «Аягөз өңірінде еңбек еткен» және «қазақ әдебиетінің өкілі» деген мәртебелер бір-бірінен ажыратылды. Толық мәтіні ашық қолжетімді емес кітаптарға библиографиялық немесе авторлық анықтама сілтемесі берілді.</div>
+</section><section aria-label="Жазушылар мен қаламгерлер бөлімі" class="section page-wrap">
+<h2 class="section-title" id="writers">Жазушылар мен қаламгерлер</h2>
+<p class="sub">Аягөз өңірінде туған немесе осы өлкенің тарихы мен әдеби өміріне қатысы бар қаламгерлер. Әр карточкада қысқаша өмірбаян, негізгі еңбектер және тексерілген дереккөздер берілген. Автордың атын немесе «онлайн оқу» сілтемесін бассаңыз, қолжетімді электронды шығарма, авторлық бет не кітапхана дерегі жаңа бетте ашылады.</p>
+<div class="profile-grid"><article class="grade-card">
+<div class="grade-head"><h3><a href="https://telegei.kz/author?name=%D0%9C%D2%B1%D1%85%D1%82%D0%B0%D1%80+%D0%9C%D0%B0%D2%93%D0%B0%D1%83%D0%B8%D0%BD" rel="noopener noreferrer" target="_blank" title="Қолжетімді шығармаларын онлайн оқу">Мұхтар Мағауин ↗</a></h3><span class="tag">Жазушы, әдебиет зерттеушісі</span></div>
+<p>1940 жылы 2 ақпанда Аягөз ауданының Баршатас ауылында дүниеге келген. Филология ғылымдарының докторы, Қазақстанның халық жазушысы, Мемлекеттік сыйлықтың лауреаты. Қазақтың ауыз әдебиеті мен тарихи әдеби мұрасын зерттеп, көркем проза мен тарихи романдар жазған. 2025 жылы дүниеден өтті.</p>
+<b>Негізгі шығармалары:</b><ul><li>«Бір атаның балалары»</li><li>«Ақша қар»</li><li>«Көк кептер»</li></ul>
+<div class="task">Зерттеу тапсырмасы: «Бір атаның балалары» шығармасындағы бауырмалдық пен адамгершілік идеясын талда.</div>
+<div class="read-links"><a class="read-btn author-reading-link" href="https://telegei.kz/author?name=%D0%9C%D2%B1%D1%85%D1%82%D0%B0%D1%80+%D0%9C%D0%B0%D2%93%D0%B0%D1%83%D0%B8%D0%BD" rel="noopener noreferrer" target="_blank">Қолжетімді шығармаларын онлайн оқу ↗</a><a class="read-btn" href="https://abaiacademy.kz/kz/avtory/mhtar-maauin" rel="noopener noreferrer" target="_blank">Өмірбаяны – Абай академиясы ↗</a><a class="read-btn" href="https://e-history.kz/kz/calendar/show/25955" rel="noopener noreferrer" target="_blank">Өмірі мен шығармашылығы – e-history.kz ↗</a><a class="read-btn" href="https://library.arsu.kz/wp-content/uploads/2025/02/M_Magauin.pdf" rel="noopener noreferrer" target="_blank">Шығармаларының библиографиялық көрсеткіші (PDF) ↗</a></div>
+</article><article class="grade-card">
+<div class="grade-head"><h3><a href="https://juldyz.info/tolymbek-%D3%99bdirajym-%D2%9Bo%D2%A3yr-%D2%9Bozy/" rel="noopener noreferrer" target="_blank" title="«Қоңыр қозы» әңгімесін онлайн оқу">Толымбек Әбдірайым ↗</a></h3><span class="tag">Жазушы</span></div>
+<p>1955 жылы 12 қыркүйекте Аягөз қаласында дүниеге келген. Дулат Бабатайұлы атындағы мектепте оқып, кейін Әл-Фараби атындағы Қазақ мемлекеттік университетінің журналистика факультетін тәмамдаған. Газет-журналдарда, телерадио саласында қызмет атқарған. Балалар мен жасөспірімдерге арналған прозалық шығармалары бар.</p>
+<b>Негізгі шығармалары:</b><ul><li>«Әуелеп ұшқан тырналар»</li><li>«Дария шабыт»</li><li>«Меңді қыз»</li></ul>
+<div class="task">Зерттеу тапсырмасы: сапарнама мақаласынан туған жерге деген сүйіспеншілікті танытатын ойларды теріп жаз. Бұл мақала Бақытөмір Шалғынбайдың 2008 жылғы кітабынан бөлек материал екенін ескер.</div>
+<div class="read-links"><a class="read-btn author-reading-link" href="https://juldyz.info/tolymbek-%D3%99bdirajym-%D2%9Bo%D2%A3yr-%D2%9Bozy/" rel="noopener noreferrer" target="_blank">«Қоңыр қозы» әңгімесін онлайн оқу ↗</a><a class="read-btn" href="https://adebiportal.kz/kz/authors/view/770" rel="noopener noreferrer" target="_blank">Өмірбаяны – Әдеби портал ↗</a><a class="read-btn" href="https://esimder.pushkinlibrary.kz/kz/pisateli-i-poetykz/445-.html" rel="noopener noreferrer" target="_blank">Шығармалары – А.С. Пушкин атындағы кітапхана ↗</a><a class="read-btn" href="https://adebiportal.kz/kz/news/view/tolymbek-abdiraiym-aiauly-meken-aiagoz__20938" rel="noopener noreferrer" target="_blank">«Аяулы мекен – Аягөз» сапарнамасы ↗</a></div>
+</article><article class="grade-card">
+<div class="grade-head"><h3><a href="https://qazaqadebieti.kz/25750/talt-s" rel="noopener noreferrer" target="_blank" title="«Талтүс» шығармасынан онлайн үзінді оқу">Таласбек Әсемқұлов ↗</a></h3><span class="tag">Жазушы, күйші, кинодраматург</span></div>
+<p>1955 жылы 1 тамызда Семей облысы, Аягөз ауданының Ақтоғай теміржол стансасында дүниеге келген. Айғыз ауылында нағашы атасы, белгілі күйші Жүнісбай Стамбаевтың тәрбиесінде өскен. Жазушы, кинодраматург, күйші әрі өнер зерттеушісі ретінде танылған.</p>
+<b>Негізгі шығармалары:</b><ul><li>«Талтүс»</li><li>«Атайы»</li><li>«Кәрі ат»</li></ul>
+<div class="task">Зерттеу тапсырмасы: «Талтүс» романындағы күй өнері мен ұрпақтар сабақтастығының көрінісін зертте.</div>
+<div class="read-links"><a class="read-btn author-reading-link" href="https://qazaqadebieti.kz/25750/talt-s" rel="noopener noreferrer" target="_blank">«Талтүс» шығармасынан онлайн үзінді оқу ↗</a><a class="read-btn" href="https://adebiportal.kz/kz/authors/view/1344" rel="noopener noreferrer" target="_blank">Өмірбаяны мен шығармалары – Әдеби портал ↗</a><a class="read-btn" href="https://esimder.pushkinlibrary.kz/kz/pisateli-i-poetykz/467-.html" rel="noopener noreferrer" target="_blank">Өмірбаяны – А.С. Пушкин атындағы кітапхана ↗</a><a class="read-btn" href="https://abaiacademy.kz/kz/avtory/talasbek-semlov" rel="noopener noreferrer" target="_blank">Автор туралы – Абай академиясы ↗</a></div>
+</article><article class="grade-card">
+<div class="grade-head"><h3><a href="https://adebiportal.kz/kz/authors/view/1316" rel="noopener noreferrer" target="_blank" title="Автордың шығармалары туралы әдеби портал дерегі">Хасен Әдібаев ↗</a></h3><span class="tag">Жазушы, әдебиет сыншысы</span></div>
+<p>1924 жылы 6 тамызда бұрынғы Шұбартау ауданының Қосағаш ауылында дүниеге келген. Соғыстан кейін Аягөз ауданында комсомол қызметін атқарған. Филология ғылымдарының докторы, профессор. Әдеби сын, әдебиеттану және көркем проза саласында еңбек еткен.</p>
+<b>Негізгі шығармалары:</b><ul><li>«Уақыт және суреткер»</li><li>«Талант, талғам, тағдыр»</li><li>«Көкжиек»</li></ul>
+<div class="task">Зерттеу тапсырмасы: «Уақыт және суреткер» еңбегі мен көркем шығармасының мақсатын салыстыр.</div>
+<div class="read-links"><a class="read-btn author-reading-link" href="https://adebiportal.kz/kz/authors/view/1316" rel="noopener noreferrer" target="_blank">Автордың шығармалары туралы әдеби портал дерегі ↗</a><a class="read-btn" href="https://adebiportal.kz/kz/authors/view/1316" rel="noopener noreferrer" target="_blank">Өмірбаяны мен шығармалары – Әдеби портал ↗</a></div>
+</article><article class="grade-card">
+<div class="grade-head"><h3><a href="https://zhetysu.edu.kz/wp-content/uploads/2021/03/%D0%A5%D0%B0%D0%BB%D1%8B%D2%9B%D0%B0%D1%80%D0%B0%D0%BB%D1%8B%D2%9B-%D0%BA%D0%BE%D0%BD%D1%84%D0%B5%D1%80%D0%B5%D0%BD%D1%86%D0%B8%D1%8F-29-10-20.pdf#page=185" rel="noopener noreferrer" target="_blank" title="«Аяулы мекен – Аягөз» кітабының библиографиялық дерегі (PDF, 185-бет)">Бақытөмір Шалғынбай ↗</a></h3><span class="tag">Журналист, өлкетану тақырыбының авторы</span></div>
+<p>Аягөз өңірінің баспасөзі мен өлкетану тақырыбына қатысты материалдарда есімі кездеседі. Қолда бар ашық библиографиялық деректерде әзірге төмендегі екі еңбек атауы расталады; үшінші атау ойдан қосылған жоқ. Алайда ашық әрі сенімді дереккөздерден туған жылы, білімі және толық өмір жолын растайтын өмірбаяндық анықтама табылмады. Сондықтан нақты расталмаған деректер енгізілген жоқ.</p>
+<b>Негізгі шығармалары:</b><ul><li>«Шығыстағы текетірес» – деректі повесть ретінде библиографиялық тізімде аталады</li><li>«Аққожа би кім болған, қайда туған?» – мақала атауы ретінде көрсетілген</li><li>«Аяулы мекен – Аягөз» (Алматы, 2008) – библиографиялық деректе кітап ретінде көрсетілген</li></ul>
+<div class="task">Зерттеу тапсырмасы: Аягөз өңірінің тарихына қатысты бір мақаланы оқып, онда келтірілген тарихи деректерді басқа сенімді дереккөзбен салыстыр.</div>
+<div class="read-links"><a class="read-btn author-reading-link" href="https://zhetysu.edu.kz/wp-content/uploads/2021/03/%D0%A5%D0%B0%D0%BB%D1%8B%D2%9B%D0%B0%D1%80%D0%B0%D0%BB%D1%8B%D2%9B-%D0%BA%D0%BE%D0%BD%D1%84%D0%B5%D1%80%D0%B5%D0%BD%D1%86%D0%B8%D1%8F-29-10-20.pdf#page=185" rel="noopener noreferrer" target="_blank">«Аяулы мекен – Аягөз» кітабының библиографиялық дерегі (PDF, 185-бет) ↗</a><a class="read-btn" href="https://www.nlrk.kz/images/page/%D0%A0%D0%96%20%D0%BE%D0%B1%D1%89%20%D0%BD%D0%B0%D1%83%D0%BA%D0%B8%202022-1.pdf" rel="noopener noreferrer" target="_blank">Ұлттық кітапхана библиографиялық көрсеткіші (PDF) ↗</a><a class="read-btn" href="https://e-memory.kz/kz/news/ARNAYYKOMISSIYAAYAGZZHERINDE/" rel="noopener noreferrer" target="_blank">Аягөз жеріндегі арнайы комиссия туралы материал ↗</a><a class="read-btn" href="https://kitap-palatasy.gov.kz/docs/files/9-2022%20%D0%B3%D0%B0%D0%B7%D0%B5%D1%82%20%D0%9A%D0%90%D0%97%281%29.pdf" rel="noopener noreferrer" target="_blank">Газет мақалаларының библиографиялық тізімі (PDF) ↗</a></div><p class="read-note">Ескерту: берілген сілтемелердің кейбірі библиографиялық жазба не тақырыптық материал ғана; толық шығарма мәтіні ретінде көрсетілмейді. Егер автордың ресми өмірбаяны немесе кітаптың нақты каталог сілтемесі болса, кейін қосуға болады.</p>
+</article></div>
+<div class="panel"><b>Дереккөзге қатысты ескерту:</b> кітаптың толық мәтіні ашық жарияланбаған жағдайда автордың ресми/әдеби порталдағы беті, кітапхана каталогы немесе библиографиялық жазба ұсынылады. Бұл сілтемелер толық мәтінге қолжетімділік бар дегенді білдірмейді.</div>
+</section><section class="section" id="ayagoz">
+<h2 class="section-title">Аягөз – аяулы мекенім</h2><p class="sub">Туған өлкенің тарихын, табиғатын, тұлғаларын және рухани мұрасын танытатын арнайы сөре. Төмендегі атаулардың басылым деректерін мектеп кітапханасының қорымен нақтылап толықтырыңыз.</p>
+<div class="book-shelf">
+<div class="book"><div class="book-cover">АЯГӨЗ</div><h3><a href="https://zhetysu.edu.kz/wp-content/uploads/2021/03/%D0%A5%D0%B0%D0%BB%D1%8B%D2%9B%D0%B0%D1%80%D0%B0%D0%BB%D1%8B%D2%9B-%D0%BA%D0%BE%D0%BD%D1%84%D0%B5%D1%80%D0%B5%D0%BD%D1%86%D0%B8%D1%8F-29-10-20.pdf#page=185" rel="noopener noreferrer" target="_blank">«Аяулы мекен – Аягөз» ↗</a></h3><p>Автор: Бақытөмір Шалғынбай. Алматы, 2008. Аягөз өңіріне арналған өлкетану кітабы. <b>Электронды толық мәтін емес: кітап туралы библиографиялық дерек.</b></p></div>
+<div class="book"><div class="book-cover">ТАРИХ</div><h3>«Тауарих хамса»</h3><p>Құрбанғали Халиди. Тарихи деректермен жұмыс жасауға арналған еңбек.</p></div>
+<div class="book"><div class="book-cover">ШОҚАН</div><h3>«Шоқанның Аягөзде ізі қалған»</h3><p>Ғ. Зұлқаров. Өлке тарихына қатысты мақала/зерттеу материалы ретінде қарастыру.</p></div>
+<div class="book"><div class="book-cover">МҰРА</div><h3>«Әуезов және Аягөз»</h3><p>Ғ. Зұлқаров. Өлкетану бағытындағы қосымша материал.</p></div>
+<div class="book book-featured"><div class="book-cover">МЕКЕНІМ</div><h3><a href="https://my.mail.ru/community/akchataum-aulum/59DFF593A6686B5E.html" rel="noopener noreferrer" target="_blank">«Аягөзім – менің алтын мекенім» ↗</a></h3><p>Жұмаш Кенебайдың «Аягөз» тарихи романындағы туған жерге арналған бөлім. <b>Толық мәтінді онлайн оқу.</b></p></div></div>
+<div class="panel" style="margin-top:14px"><b>Ескерту:</b> кітапханаға енгізер алдында әр материалдың нақты басылымын, авторын, шыққан жылын және қолжетімділігін кітапхана қорымен тексеріңіз. Мақала мен кітапты бөлек белгілеңіз.</div>
+</section></section><section class="portal-group" id="section-3"><h2 class="portal-group-title">3. Кітап әлемі</h2><section class="section" id="grades">
+<h2 class="section-title">1–11-сыныптарға арналған кітап сөресі</h2>
+<p class="sub">Әр сыныпқа 2–3 оқу ұсынысы берілді. Толық мәтіні ашық қолжетімді болмаса, кітапхана немесе библиографиялық дерек сілтемесі көрсетіледі.</p>
+<div class="grade-tools">
+<input id="search" placeholder="Шығарма, автор немесе тақырыпты іздеу..." type="search"/>
+<select id="level"><option value="all">Барлық сыныптар</option><option value="primary">1–4-сынып</option><option value="middle">5–7-сынып</option><option value="high">8–11-сынып</option></select>
+</div>
+<div class="grade-grid" id="gradeGrid"><article class="grade-card" data-level="primary">
+<div class="grade-head"><h3>1-сынып</h3><span class="tag">Бастауыш буын</span></div>
+<b>«Қоңыр қозы» әңгімесі</b><p><b>Автор:</b> Толымбек Әбдірайым</p>
+<p>Балаларға арналған қысқа әңгіме. Оқушыға кейіпкерлерді танып, оқиға желісін сурет арқылы жеткізуге қолайлы.</p><div class="task"><b>Оқу тапсырмасы:</b> Әңгімедегі басты кейіпкерді ата. Оқиға бойынша бір сурет сал.</div>
+<div class="read-links"><a class="read-btn" href="https://juldyz.info/tolymbek-%D3%99bdirajym-%D2%9Bo%D2%A3yr-%D2%9Bozy/" rel="noopener noreferrer" target="_blank">Әңгімені онлайн оқу ↗</a></div>
+<a class="read-btn" href="#reading-grade-1">Оқу карточкасына өту ↓</a>
+</article><article class="grade-card" data-level="primary">
+<div class="grade-head"><h3>2-сынып</h3><span class="tag">Бастауыш буын</span></div>
+<b>«Қоңыр қозы» әңгімесі</b><p><b>Автор:</b> Толымбек Әбдірайым</p>
+<p>Туған өлке табиғаты мен ауыл тіршілігін танытатын балалар әңгімесі.</p><div class="task"><b>Оқу тапсырмасы:</b> Әңгімедегі оқиғаны 3–4 сөйлеммен мазмұнда.</div>
+<div class="read-links"><a class="read-btn" href="https://juldyz.info/tolymbek-%D3%99bdirajym-%D2%9Bo%D2%A3yr-%D2%9Bozy/" rel="noopener noreferrer" target="_blank">Әңгімені онлайн оқу ↗</a></div>
+<a class="read-btn" href="#reading-grade-2">Оқу карточкасына өту ↓</a>
+</article><article class="grade-card" data-level="primary">
+<div class="grade-head"><h3>3-сынып</h3><span class="tag">Бастауыш буын</span></div>
+<b>«Аяулы мекен – Аягөз» кітабы</b><p><b>Автор:</b> Бақытөмір Шалғынбай</p>
+<p>2008 жылы Алматы қаласында жарық көрген Аягөз өңіріне арналған өлкетану кітабы. 3-сынып оқушыларына мұғалім таңдаған шағын үзіндімен танысу ұсынылады.</p>
+<div class="task"><b>Оқу тапсырмасы:</b> Кітаптан Аягөз туралы оқыған бір деректі жаз. «Менің туған өлкем» тақырыбында 4 сөйлем құрастыр.</div>
+<div class="read-links"><a class="read-btn" href="https://zhetysu.edu.kz/wp-content/uploads/2021/03/%D0%A5%D0%B0%D0%BB%D1%8B%D2%9B%D0%B0%D1%80%D0%B0%D0%BB%D1%8B%D2%9B-%D0%BA%D0%BE%D0%BD%D1%84%D0%B5%D1%80%D0%B5%D0%BD%D1%86%D0%B8%D1%8F-29-10-20.pdf#page=185" rel="noopener noreferrer" target="_blank">Кітап туралы библиографиялық дерек (PDF, 185-бет) ↗</a><a class="read-btn" href="#writers">Бақытөмір Шалғынбай туралы ↗</a></div>
+<p class="read-note">Ескерту: сілтеме кітаптың толық мәтінін емес, библиографиялық деректі қамтитын материалды ашады.</p>
+<a class="read-btn" href="#reading-grade-3">Оқу карточкасына өту ↓</a>
+</article><article class="grade-card" data-level="primary">
+<div class="grade-head"><h3>4-сынып</h3><span class="tag">Бастауыш буын</span></div>
+<b>«Аягөз» өлеңі және табиғат лирикасы</b><p><b>Автор:</b> Дулат Бабатайұлы</p>
+<p>Ақынның туған өлке, табиғат және ел туралы өлеңдерінен жас ерекшелігіне сай шумақтар.</p><div class="task"><b>Оқу тапсырмасы:</b> Өлеңнен туған жерге қатысты сөздерді тауып, мағынасын түсіндір.</div>
+<div class="read-links"><a class="read-btn" href="https://farabi.university/storage/book/3074360988647ea477b96e5207102505_%D2%9A%D0%B0%D0%B7%D0%B0%D2%9B%20%D1%82%D1%96%D0%BB%D1%96%20%D0%B4%D0%B5%D2%A3%D0%B3%D0%B5%D0%B9%D0%BB%D1%96%D0%BA%20%D0%BE%D2%9B%D1%83-%D3%99%D0%B4%D1%96%D1%81%D1%82%D0%B5%D0%BC%D0%B5%D0%BB%D1%96%D0%BA%20%D0%A0%D1%83%D1%85%D0%B0%D0%BD%D0%B8%20%D3%99%D0%BB%D0%B5%D0%BC%202013%20%D0%B6%D1%8B%D0%BB%20%E2%84%96%20293297.pdf" rel="noopener noreferrer" target="_blank">Ақын өлеңдері мен оқу материалы (PDF) ↗</a></div>
+<a class="read-btn" href="#reading-grade-4">Оқу карточкасына өту ↓</a>
+</article><article class="grade-card" data-level="middle">
+<div class="grade-head"><h3>5-сынып</h3><span class="tag">Орта буын</span></div>
+<b>«Өсиетнама» жинағынан өлеңдер</b><p><b>Автор:</b> Дулат Бабатайұлы</p>
+<p>Ақынның өсиет, адамгершілік, туған жер мен ел тағдыры туралы өлеңдері.</p><div class="task"><b>Оқу тапсырмасы:</b> Бір өлеңнің негізгі ойын анықтап, бүгінгі өмірмен байланыстыр.</div>
+<div class="read-links"><a class="read-btn" href="https://adebiportal.kz/kz/books/view/epub__741" rel="noopener noreferrer" target="_blank">Шығармаларын онлайн оқу – Әдеби портал ↗</a><a class="read-btn" href="https://kitaphana.kz/literaturnui/ayaguz/5646-2015-06-23-04-00-01.html" rel="noopener noreferrer" target="_blank">Өмірі мен шығармашылығы – кітапхана (анықтамалық) ↗</a></div>
+<a class="read-btn" href="#reading-grade-5">Оқу карточкасына өту ↓</a>
+</article><article class="grade-card" data-level="middle">
+<div class="grade-head"><h3>6-сынып</h3><span class="tag">Орта буын</span></div>
+<b>«Бір атаның балалары» повесі</b><p><b>Автор:</b> Мұхтар Мағауин</p>
+<p>Бауырмалдық, мейірім, достық және адамды ұлтына қарап бөлмеу туралы шығарма. Мектеп оқулығындағы мәтінмен жұмыс істеуге болады.</p><div class="task"><b>Оқу тапсырмасы:</b> Шығарма кейіпкерлерінің іс-әрекетін салыстырып, негізгі идеясын түсіндір.</div>
+<div class="read-links"><a class="read-btn" href="https://uzedu.online/books/750/750-b9022.pdf#page=138" rel="noopener noreferrer" target="_blank">Оқулықтағы мәтінді оқу (PDF) ↗</a><a class="read-btn" href="https://kitapal.kz/book/bir-atanynh-balalary-qasym-baspasy" rel="noopener noreferrer" target="_blank">Шығарма туралы кітап мәліметі (анықтамалық) ↗</a></div>
+<a class="read-btn" href="#reading-grade-6">Оқу карточкасына өту ↓</a>
+</article><article class="grade-card" data-level="middle">
+<div class="grade-head"><h3>7-сынып</h3><span class="tag">Орта буын</span></div>
+<b>«Сарыарқа», «Ұлдарым» өлеңдері</b><p><b>Автор:</b> Төлеу Көбдіков</p>
+<p>Ел, жер, Отан және тарихи кезеңдер тақырыбындағы ақын мұрасы.</p><div class="task"><b>Оқу тапсырмасы:</b> Өлеңдердегі ел мен жерге қатысты ойларды салыстыр.</div>
+<div class="read-links"><a class="read-btn" href="https://esimder.pushkinlibrary.kz/kz/pisateli-i-poetykz/747-.html" rel="noopener noreferrer" target="_blank">Өмірі мен шығармалары – А.С. Пушкин атындағы кітапхана (анықтамалық) ↗</a></div>
+<a class="read-btn" href="#reading-grade-7">Оқу карточкасына өту ↓</a>
+</article><article class="grade-card" data-level="high">
+<div class="grade-head"><h3>8-сынып</h3><span class="tag">Жоғары буын</span></div>
+<b>«Бір атаның балалары» повесі</b><p><b>Автор:</b> Мұхтар Мағауин</p>
+<p>Шығарманы толық немесе оқулықтағы үзінді арқылы талдап, тарихи кезең мен адамгершілік құндылықтарды қарастыру.</p><div class="task"><b>Оқу тапсырмасы:</b> Көркем шығармадағы тарихи жағдай мен кейіпкерлер таңдауының байланысын талда.</div>
+<div class="read-links"><a class="read-btn" href="https://uzedu.online/books/750/750-b9022.pdf#page=138" rel="noopener noreferrer" target="_blank">Оқулықтағы мәтінді оқу (PDF) ↗</a><a class="read-btn" href="https://library.arsu.kz/wp-content/uploads/2025/02/M_Magauin.pdf" rel="noopener noreferrer" target="_blank">Жазушы еңбектерінің библиографиялық көрсеткіші (PDF) (анықтамалық) ↗</a></div>
+<a class="read-btn" href="#reading-grade-8">Оқу карточкасына өту ↓</a>
+</article><article class="grade-card" data-level="high">
+<div class="grade-head"><h3>9-сынып</h3><span class="tag">Жоғары буын</span></div>
+<b>Дулаттың толғаулары және Төлеу Көбдіковтің «1916» шығармасы</b><p><b>Автор:</b> Дулат Бабатайұлы және Төлеу Көбдіков</p>
+<p>Екі дәуір ақындарының ел тағдыры мен тарихи оқиғаларды жырлау ерекшелігін салыстыруға арналған оқу бағыты.</p><div class="task"><b>Оқу тапсырмасы:</b> Екі ақынның шығармаларындағы тарихи көзқарас пен көркемдік ерекшелікті салыстыр.</div>
+<div class="read-links"><a class="read-btn" href="https://adebiportal.kz/kz/books/view/epub__741" rel="noopener noreferrer" target="_blank">Дулат Бабатайұлы шығармаларын онлайн оқу ↗</a><a class="read-btn" href="https://esimder.pushkinlibrary.kz/kz/pisateli-i-poetykz/747-.html" rel="noopener noreferrer" target="_blank">Төлеу Көбдіков туралы кітапхана дерегі (анықтамалық) ↗</a></div>
+<a class="read-btn" href="#reading-grade-9">Оқу карточкасына өту ↓</a>
+</article><article class="grade-card" data-level="high">
+<div class="grade-head"><h3>10-сынып</h3><span class="tag">Жоғары буын</span></div>
+<b>«Аласапыран» тарихи романынан үзінді</b><p><b>Автор:</b> Мұхтар Мағауин</p>
+<p>Тарихи романның мұғалім таңдаған үзіндісі. Тарихи дерек пен көркем қиялдың арақатынасын зерттеуге арналған.</p><div class="task"><b>Оқу тапсырмасы:</b> Үзіндідегі тарихи тұлғалар мен оқиғаларды дереккөздер арқылы тексеріп, талдау жаз.</div>
+<div class="read-links"><a class="read-btn" href="https://library.arsu.kz/wp-content/uploads/2025/02/M_Magauin.pdf" rel="noopener noreferrer" target="_blank">Жазушы еңбектерінің библиографиялық көрсеткіші (PDF) (анықтамалық) ↗</a></div>
+<a class="read-btn" href="#reading-grade-10">Оқу карточкасына өту ↓</a>
+</article><article class="grade-card" data-level="high">
+<div class="grade-head"><h3>11-сынып</h3><span class="tag">Жоғары буын</span></div>
+<b>«Қобыз сарыны» зерттеу еңбегінен үзінді</b><p><b>Автор:</b> Мұхтар Мағауин</p>
+<p>Қазақтың көне жыраулық поэзиясы туралы зерттеу еңбегінен мұғалім ұсынған үзінді.</p><div class="task"><b>Оқу тапсырмасы:</b> Зерттеу еңбегіндегі бір тұжырымды таңдап, әдеби-тарихи деректермен дәлелде.</div>
+<div class="read-links"><a class="read-btn" href="https://library.arsu.kz/wp-content/uploads/2025/02/M_Magauin.pdf" rel="noopener noreferrer" target="_blank">Жазушы еңбектерінің библиографиялық көрсеткіші (PDF) (анықтамалық) ↗</a></div>
+<a class="read-btn" href="#reading-grade-11">Оқу карточкасына өту ↓</a>
+</article></div>
+<div class="panel" style="margin-top:14px;border-left:4px solid #d8a83e"><b>Оқу ережесі:</b> 1–4-сынып оқушыларына қысқа әңгіме мен өлең шумақтары ұсынылады. 5–9-сыныптарда өлең мен повесть талданады. 10–11-сыныптарда көлемді тарихи және зерттеу еңбектерінен мұғалім таңдаған үзінді оқылады. Бұл – қосымша өлкетану оқу сөресі, ресми оқу бағдарламасының міндетті тізімі емес.</div>
+<p hidden="" id="noResults">Іздеу бойынша материал табылмады.</p>
+</section><section class="section" id="grade-reading-list">
+<h2 class="section-title">1–11-сыныптарға арналған оқу тізімі</h2>
+<p class="sub">Төмендегі карточкалар кітап сөресіндегі атаулармен толық сәйкес келеді. «Онлайн оқу» сілтемесі мәтінге апарады; «анықтамалық» сілтемесі кітапхана немесе библиографиялық мәлімет ашады.</p>
+<div class="grade-grid"><article class="grade-card" id="reading-grade-1">
+<div class="grade-head"><h3>1-сынып</h3><span class="tag">Бастауыш буын</span></div>
+<h4>«Қоңыр қозы» әңгімесі</h4><p><b>Автор:</b> Толымбек Әбдірайым</p><p>Балаларға арналған қысқа әңгіме. Оқушыға кейіпкерлерді танып, оқиға желісін сурет арқылы жеткізуге қолайлы.</p>
+<div class="task"><b>Оқу тапсырмасы:</b> Әңгімедегі басты кейіпкерді ата. Оқиға бойынша бір сурет сал.</div>
+<div class="read-links"><a class="read-btn" href="https://juldyz.info/tolymbek-%D3%99bdirajym-%D2%9Bo%D2%A3yr-%D2%9Bozy/" rel="noopener noreferrer" target="_blank">Әңгімені онлайн оқу ↗</a></div>
+<div class="task recommendation-list"><b>Қосымша оқу ұсыныстары:</b><ul><li><a href="https://adebiportal.kz/kz/books/view/epub__741" rel="noopener noreferrer" target="_blank">«Аягөз» өлеңінен үзінді</a> — Дулат Бабатайұлы. Туған жер туралы өлеңді мұғалім таңдаған шағын үзіндімен оқу. <small>(Өлеңдер жинағы / онлайн оқу)</small></li><li><a href="https://zhetysu.edu.kz/wp-content/uploads/2021/03/Халықаралық-конференция-29-10-20.pdf#page=185" rel="noopener noreferrer" target="_blank">«Аяулы мекен – Аягөз»</a> — Бақытөмір Шалғынбай. Аягөз туралы кітаптан мұғалім таңдаған шағын үзінді. <small>(Библиографиялық дерек)</small></li></ul></div></article><article class="grade-card" id="reading-grade-2">
+<div class="grade-head"><h3>2-сынып</h3><span class="tag">Бастауыш буын</span></div>
+<h4>«Қоңыр қозы» әңгімесі</h4><p><b>Автор:</b> Толымбек Әбдірайым</p><p>Туған өлке табиғаты мен ауыл тіршілігін танытатын балалар әңгімесі.</p>
+<div class="task"><b>Оқу тапсырмасы:</b> Әңгімедегі оқиғаны 3–4 сөйлеммен мазмұнда.</div>
+<div class="read-links"><a class="read-btn" href="https://juldyz.info/tolymbek-%D3%99bdirajym-%D2%9Bo%D2%A3yr-%D2%9Bozy/" rel="noopener noreferrer" target="_blank">Әңгімені онлайн оқу ↗</a></div>
+<div class="task recommendation-list"><b>Қосымша оқу ұсыныстары:</b><ul><li><a href="https://adebiportal.kz/kz/books/view/epub__741" rel="noopener noreferrer" target="_blank">«Аягөз» өлеңінен үзінді</a> — Дулат Бабатайұлы. Туған өлке мен табиғат туралы шумақтарды оқу. <small>(Өлеңдер жинағы / онлайн оқу)</small></li><li><a href="https://juldyz.info/tolymbek-%D3%99bdirajym-%D2%9Bo%D2%A3yr-%D2%9Bozy/" rel="noopener noreferrer" target="_blank">«Қоңыр қозы»</a> — Толымбек Әбдірайым. Қайталап оқып, кейіпкердің іс-әрекетін сипаттау. <small>(Онлайн оқу)</small></li></ul></div></article><article class="grade-card" id="reading-grade-3">
+<div class="grade-head"><h3>3-сынып</h3><span class="tag">Бастауыш буын</span></div>
+<h4>«Аяулы мекен – Аягөз» кітабы</h4><p><b>Автор: </b><a href="https://zhetysu.edu.kz/wp-content/uploads/2021/03/%D0%A5%D0%B0%D0%BB%D1%8B%D2%9B%D0%B0%D1%80%D0%B0%D0%BB%D1%8B%D2%9B-%D0%BA%D0%BE%D0%BD%D1%84%D0%B5%D1%80%D0%B5%D0%BD%D1%86%D0%B8%D1%8F-29-10-20.pdf#page=185" rel="noopener noreferrer" target="_blank">Бақытөмір Шалғынбай ↗</a></p><p>2008 жылы Алматыда шыққан Аягөз өңіріне арналған өлкетану кітабы. Оқушы мұғалім ұсынған үзінді арқылы туған өлкенің тарихы мен ерекшеліктерін таниды.</p>
+<div class="task"><b>Оқу тапсырмасы:</b> Кітаптан есте қалған бір деректі жаз. Аягөздің өзіңе ұнайтын бір ерекшелігін 4 сөйлеммен сипатта.</div>
+<div class="read-links"><a class="read-btn" href="https://zhetysu.edu.kz/wp-content/uploads/2021/03/%D0%A5%D0%B0%D0%BB%D1%8B%D2%9B%D0%B0%D1%80%D0%B0%D0%BB%D1%8B%D2%9B-%D0%BA%D0%BE%D0%BD%D1%84%D0%B5%D1%80%D0%B5%D0%BD%D1%86%D0%B8%D1%8F-29-10-20.pdf#page=185" rel="noopener noreferrer" target="_blank">Кітап туралы библиографиялық дерек (PDF, 185-бет) ↗</a><a class="read-btn" href="#writers">Автор туралы ↗</a><a class="read-btn" href="https://my.mail.ru/community/akchataum-aulum/59DFF593A6686B5E.html" rel="noopener noreferrer" target="_blank">Қосымша оқу: «Аягөзім – менің алтын мекенім» ↗</a></div><p class="read-note">Бұл – Жұмаш Кенебайдың «Аягөз» тарихи романындағы туған жерге арналған бөлім; жеке кітап атауы емес. 3-сынып оқушысына мұғалім таңдаған шағын үзіндіні бірге оқуға болады.</p>
+<p class="read-note">Ескерту: бұл сілтеме кітаптың толық мәтіні емес, библиографиялық жазбасы бар материал.</p>
+<div class="task recommendation-list"><b>Қосымша оқу ұсыныстары:</b><ul><li><a href="https://my.mail.ru/community/akchataum-aulum/59DFF593A6686B5E.html" rel="noopener noreferrer" target="_blank">«Аягөзім – менің алтын мекенім» бөлімінен үзінді</a> — Жұмаш Кенебай. Туған жерге арналған бөлімді мұғаліммен бірге оқу. <small>(Онлайн мәтін)</small></li><li><a href="https://juldyz.info/tolymbek-%D3%99bdirajym-%D2%9Bo%D2%A3yr-%D2%9Bozy/" rel="noopener noreferrer" target="_blank">«Қоңыр қозы»</a> — Толымбек Әбдірайым. Ауыл тіршілігі мен кейіпкерлер әрекетін талқылау. <small>(Онлайн оқу)</small></li></ul></div></article><article class="grade-card" id="reading-grade-4">
+<div class="grade-head"><h3>4-сынып</h3><span class="tag">Бастауыш буын</span></div>
+<h4>«Аягөз» өлеңі және табиғат лирикасы</h4><p><b>Автор:</b> Дулат Бабатайұлы</p><p>Ақынның туған өлке, табиғат және ел туралы өлеңдерінен жас ерекшелігіне сай шумақтар.</p>
+<div class="task"><b>Оқу тапсырмасы:</b> Өлеңнен туған жерге қатысты сөздерді тауып, мағынасын түсіндір.</div>
+<div class="read-links"><a class="read-btn" href="https://farabi.university/storage/book/3074360988647ea477b96e5207102505_%D2%9A%D0%B0%D0%B7%D0%B0%D2%9B%20%D1%82%D1%96%D0%BB%D1%96%20%D0%B4%D0%B5%D2%A3%D0%B3%D0%B5%D0%B9%D0%BB%D1%96%D0%BA%20%D0%BE%D2%9B%D1%83-%D3%99%D0%B4%D1%96%D1%81%D1%82%D0%B5%D0%BC%D0%B5%D0%BB%D1%96%D0%BA%20%D0%A0%D1%83%D1%85%D0%B0%D0%BD%D0%B8%20%D3%99%D0%BB%D0%B5%D0%BC%202013%20%D0%B6%D1%8B%D0%BB%20%E2%84%96%20293297.pdf" rel="noopener noreferrer" target="_blank">Ақын өлеңдері мен оқу материалы (PDF) ↗</a></div>
+<div class="task recommendation-list"><b>Қосымша оқу ұсыныстары:</b><ul><li><a href="https://adebiportal.kz/kz/books/view/epub__741" rel="noopener noreferrer" target="_blank">«Өсиетнама» өлеңдерінен</a> — Дулат Бабатайұлы. Адамгершілік пен елдік туралы өлеңдерді оқу. <small>(Онлайн оқу)</small></li><li><a href="https://juldyz.info/tolymbek-%D3%99bdirajym-%D2%9Bo%D2%A3yr-%D2%9Bozy/" rel="noopener noreferrer" target="_blank">«Қоңыр қозы»</a> — Толымбек Әбдірайым. Әңгіме мазмұнын жоспар бойынша айту. <small>(Онлайн оқу)</small></li></ul></div></article><article class="grade-card" id="reading-grade-5">
+<div class="grade-head"><h3>5-сынып</h3><span class="tag">Орта буын</span></div>
+<h4>«Өсиетнама» жинағынан өлеңдер</h4><p><b>Автор:</b> Дулат Бабатайұлы</p><p>Ақынның өсиет, адамгершілік, туған жер мен ел тағдыры туралы өлеңдері.</p>
+<div class="task"><b>Оқу тапсырмасы:</b> Бір өлеңнің негізгі ойын анықтап, бүгінгі өмірмен байланыстыр.</div>
+<div class="read-links"><a class="read-btn" href="https://adebiportal.kz/kz/books/view/epub__741" rel="noopener noreferrer" target="_blank">Шығармаларын онлайн оқу – Әдеби портал ↗</a><a class="read-btn" href="https://kitaphana.kz/literaturnui/ayaguz/5646-2015-06-23-04-00-01.html" rel="noopener noreferrer" target="_blank">Өмірі мен шығармашылығы – кітапхана (анықтамалық) ↗</a></div>
+<div class="task recommendation-list"><b>Қосымша оқу ұсыныстары:</b><ul><li><a href="https://esimder.pushkinlibrary.kz/kz/pisateli-i-poetykz/747-.html" rel="noopener noreferrer" target="_blank">«Сарыарқа» өлеңі</a> — Төлеу Көбдіков. Өлеңдегі туған жер бейнесін анықтау. <small>(Кітапхана анықтамалығы)</small></li><li><a href="https://esimder.pushkinlibrary.kz/kz/pisateli-i-poetykz/747-.html" rel="noopener noreferrer" target="_blank">«Ұлдарым» өлеңі</a> — Төлеу Көбдіков. Өлеңнің тәрбиелік ойын талдау. <small>(Кітапхана анықтамалығы)</small></li></ul></div></article><article class="grade-card" id="reading-grade-6">
+<div class="grade-head"><h3>6-сынып</h3><span class="tag">Орта буын</span></div>
+<h4>«Бір атаның балалары» повесі</h4><p><b>Автор:</b> Мұхтар Мағауин</p><p>Бауырмалдық, мейірім, достық және адамды ұлтына қарап бөлмеу туралы шығарма. Мектеп оқулығындағы мәтінмен жұмыс істеуге болады.</p>
+<div class="task"><b>Оқу тапсырмасы:</b> Шығарма кейіпкерлерінің іс-әрекетін салыстырып, негізгі идеясын түсіндір.</div>
+<div class="read-links"><a class="read-btn" href="https://uzedu.online/books/750/750-b9022.pdf#page=138" rel="noopener noreferrer" target="_blank">Оқулықтағы мәтінді оқу (PDF) ↗</a><a class="read-btn" href="https://kitapal.kz/book/bir-atanynh-balalary-qasym-baspasy" rel="noopener noreferrer" target="_blank">Шығарма туралы кітап мәліметі (анықтамалық) ↗</a></div>
+<div class="task recommendation-list"><b>Қосымша оқу ұсыныстары:</b><ul><li><a href="https://adebiportal.kz/kz/books/view/epub__741" rel="noopener noreferrer" target="_blank">«Аягөз» өлеңдері</a> — Дулат Бабатайұлы. Өлеңдегі туған жерге қатысты көркем сөздерді табу. <small>(Онлайн оқу)</small></li><li><a href="https://esimder.pushkinlibrary.kz/kz/pisateli-i-poetykz/747-.html" rel="noopener noreferrer" target="_blank">«Сарыарқа» өлеңі</a> — Төлеу Көбдіков. Ел мен жер тақырыбындағы ойды талқылау. <small>(Кітапхана анықтамалығы)</small></li></ul></div></article><article class="grade-card" id="reading-grade-7">
+<div class="grade-head"><h3>7-сынып</h3><span class="tag">Орта буын</span></div>
+<h4>«Сарыарқа», «Ұлдарым» өлеңдері</h4><p><b>Автор:</b> Төлеу Көбдіков</p><p>Ел, жер, Отан және тарихи кезеңдер тақырыбындағы ақын мұрасы.</p>
+<div class="task"><b>Оқу тапсырмасы:</b> Өлеңдердегі ел мен жерге қатысты ойларды салыстыр.</div>
+<div class="read-links"><a class="read-btn" href="https://esimder.pushkinlibrary.kz/kz/pisateli-i-poetykz/747-.html" rel="noopener noreferrer" target="_blank">Өмірі мен шығармалары – А.С. Пушкин атындағы кітапхана (анықтамалық) ↗</a></div>
+<div class="task recommendation-list"><b>Қосымша оқу ұсыныстары:</b><ul><li><a href="https://esimder.pushkinlibrary.kz/kz/pisateli-i-poetykz/747-.html" rel="noopener noreferrer" target="_blank">«1916» шығармасы</a> — Төлеу Көбдіков. Тарихи оқиғаға қатысты әдеби дерекпен танысу. <small>(Кітапхана анықтамалығы)</small></li><li><a href="https://zhetysu.edu.kz/wp-content/uploads/2021/03/Халықаралық-конференция-29-10-20.pdf#page=185" rel="noopener noreferrer" target="_blank">«Аяулы мекен – Аягөз»</a> — Бақытөмір Шалғынбай. Өлкетану кітабынан мұғалім таңдаған үзіндіні оқу. <small>(Библиографиялық дерек)</small></li></ul></div></article><article class="grade-card" id="reading-grade-8">
+<div class="grade-head"><h3>8-сынып</h3><span class="tag">Жоғары буын</span></div>
+<h4>«Бір атаның балалары» повесі</h4><p><b>Автор:</b> Мұхтар Мағауин</p><p>Шығарманы толық немесе оқулықтағы үзінді арқылы талдап, тарихи кезең мен адамгершілік құндылықтарды қарастыру.</p>
+<div class="task"><b>Оқу тапсырмасы:</b> Көркем шығармадағы тарихи жағдай мен кейіпкерлер таңдауының байланысын талда.</div>
+<div class="read-links"><a class="read-btn" href="https://uzedu.online/books/750/750-b9022.pdf#page=138" rel="noopener noreferrer" target="_blank">Оқулықтағы мәтінді оқу (PDF) ↗</a><a class="read-btn" href="https://library.arsu.kz/wp-content/uploads/2025/02/M_Magauin.pdf" rel="noopener noreferrer" target="_blank">Жазушы еңбектерінің библиографиялық көрсеткіші (PDF) (анықтамалық) ↗</a></div>
+<div class="task recommendation-list"><b>Қосымша оқу ұсыныстары:</b><ul><li><a href="https://adebiportal.kz/kz/books/view/epub__741" rel="noopener noreferrer" target="_blank">«Өсиетнама» өлеңдерінен</a> — Дулат Бабатайұлы. Ақынның қоғам мен адамгершілік туралы ойын талдау. <small>(Онлайн оқу)</small></li><li><a href="https://zhetysu.edu.kz/wp-content/uploads/2021/03/Халықаралық-конференция-29-10-20.pdf#page=185" rel="noopener noreferrer" target="_blank">«Аяулы мекен – Аягөз»</a> — Бақытөмір Шалғынбай. Өлкетану дерегі бойынша шағын зерттеу жүргізу. <small>(Библиографиялық дерек)</small></li></ul></div></article><article class="grade-card" id="reading-grade-9">
+<div class="grade-head"><h3>9-сынып</h3><span class="tag">Жоғары буын</span></div>
+<h4>Дулаттың толғаулары және Төлеу Көбдіковтің «1916» шығармасы</h4><p><b>Автор:</b> Дулат Бабатайұлы және Төлеу Көбдіков</p><p>Екі дәуір ақындарының ел тағдыры мен тарихи оқиғаларды жырлау ерекшелігін салыстыруға арналған оқу бағыты.</p>
+<div class="task"><b>Оқу тапсырмасы:</b> Екі ақынның шығармаларындағы тарихи көзқарас пен көркемдік ерекшелікті салыстыр.</div>
+<div class="read-links"><a class="read-btn" href="https://adebiportal.kz/kz/books/view/epub__741" rel="noopener noreferrer" target="_blank">Дулат Бабатайұлы шығармаларын онлайн оқу ↗</a><a class="read-btn" href="https://esimder.pushkinlibrary.kz/kz/pisateli-i-poetykz/747-.html" rel="noopener noreferrer" target="_blank">Төлеу Көбдіков туралы кітапхана дерегі (анықтамалық) ↗</a></div>
+<div class="task recommendation-list"><b>Қосымша оқу ұсыныстары:</b><ul><li><a href="https://kk.encyclopedia.kz/index.php/Жұмаш_Айтжұманұлы_Кенебай" rel="noopener noreferrer" target="_blank">«Аягөз» тарихи романынан үзінді</a> — Жұмаш Кенебай. Туған өлке тарихына қатысты мұғалім таңдаған үзіндіні талдау. <small>(Автор туралы анықтама)</small></li><li><a href="https://zhetysu.edu.kz/wp-content/uploads/2021/03/Халықаралық-конференция-29-10-20.pdf#page=185" rel="noopener noreferrer" target="_blank">«Аяулы мекен – Аягөз»</a> — Бақытөмір Шалғынбай. Кітаптың библиографиялық дерегін пайдаланып, дереккөз тізімін жасау. <small>(Библиографиялық дерек)</small></li></ul></div></article><article class="grade-card" id="reading-grade-10">
+<div class="grade-head"><h3>10-сынып</h3><span class="tag">Жоғары буын</span></div>
+<h4>«Аласапыран» тарихи романынан үзінді</h4><p><b>Автор:</b> Мұхтар Мағауин</p><p>Тарихи романның мұғалім таңдаған үзіндісі. Тарихи дерек пен көркем қиялдың арақатынасын зерттеуге арналған.</p>
+<div class="task"><b>Оқу тапсырмасы:</b> Үзіндідегі тарихи тұлғалар мен оқиғаларды дереккөздер арқылы тексеріп, талдау жаз.</div>
+<div class="read-links"><a class="read-btn" href="https://library.arsu.kz/wp-content/uploads/2025/02/M_Magauin.pdf" rel="noopener noreferrer" target="_blank">Жазушы еңбектерінің библиографиялық көрсеткіші (PDF) (анықтамалық) ↗</a></div>
+<div class="task recommendation-list"><b>Қосымша оқу ұсыныстары:</b><ul><li><a href="https://kk.encyclopedia.kz/index.php/Жұмаш_Айтжұманұлы_Кенебай" rel="noopener noreferrer" target="_blank">«Аягөз» тарихи романынан үзінді</a> — Жұмаш Кенебай. Тарихи оқиға мен көркем баяндауды салыстыру. <small>(Автор туралы анықтама)</small></li><li><a href="https://adebiportal.kz/kz/books/view/epub__741" rel="noopener noreferrer" target="_blank">«Өсиетнама»</a> — Дулат Бабатайұлы. Ақын көзқарасын тарихи кезеңмен байланыстырып талдау. <small>(Онлайн оқу)</small></li></ul></div></article><article class="grade-card" id="reading-grade-11">
+<div class="grade-head"><h3>11-сынып</h3><span class="tag">Жоғары буын</span></div>
+<h4>«Қобыз сарыны» зерттеу еңбегінен үзінді</h4><p><b>Автор:</b> Мұхтар Мағауин</p><p>Қазақтың көне жыраулық поэзиясы туралы зерттеу еңбегінен мұғалім ұсынған үзінді.</p>
+<div class="task"><b>Оқу тапсырмасы:</b> Зерттеу еңбегіндегі бір тұжырымды таңдап, әдеби-тарихи деректермен дәлелде.</div>
+<div class="read-links"><a class="read-btn" href="https://library.arsu.kz/wp-content/uploads/2025/02/M_Magauin.pdf" rel="noopener noreferrer" target="_blank">Жазушы еңбектерінің библиографиялық көрсеткіші (PDF) (анықтамалық) ↗</a></div>
+<div class="task recommendation-list"><b>Қосымша оқу ұсыныстары:</b><ul><li><a href="https://telegei.kz/author?name=%D0%9C%D2%B1%D1%85%D1%82%D0%B0%D1%80+%D0%9C%D0%B0%D2%93%D0%B0%D1%83%D0%B8%D0%BD" rel="noopener noreferrer" target="_blank">«Қобыз сарыны»</a> — Мұхтар Мағауин. Жыраулық поэзия туралы мұғалім таңдаған бөлімді оқу. <small>(Автор/еңбек туралы мәлімет)</small></li><li><a href="https://kk.encyclopedia.kz/index.php/Жұмаш_Айтжұманұлы_Кенебай" rel="noopener noreferrer" target="_blank">«Аягөз» тарихи романынан үзінді</a> — Жұмаш Кенебай. Тарихи-өлкетанулық деректерді салыстырып зерттеу. <small>(Автор туралы анықтама)</small></li></ul></div></article></div>
+<div class="panel" style="margin-top:16px">
+<h3 style="margin-top:0;color:#12334a">Сілтемелерді пайдалану</h3>
+<ul>
+<li>Ашық мәтіні бар сілтемелер онлайн оқуға арналған.</li>
+<li>Анықтамалық сілтемелер кітаптың толық мәтіні емес, автор немесе басылым туралы мәлімет береді.</li>
+<li>Кітап толық ашылмаса, мектеп кітапханасындағы басылымды пайдаланыңыз.</li>
+<li>Мұғалім оқушының оқу деңгейіне қарай көлемді шығармадан үзінді таңдай алады.</li>
+</ul>
+</div>
+</section><section class="section" id="book-reviews"><h2 class="section-title">Оқыған кітабыма пікір қалдырамын</h2><p class="sub">Оқыған шығармаң туралы өз ойыңды жаз. Пікірлер осы құрылғыдағы браузерде сақталады.</p><form class="grade-card" id="reviewForm"><label>Кітап атауы<select id="reviewBook" required="True"><option value="«Қоңыр қозы»">«Қоңыр қозы»</option><option value="«Аягөз» өлеңдері">«Аягөз» өлеңдері</option><option value="«Аяулы мекен – Аягөз»">«Аяулы мекен – Аягөз»</option><option value="«Өсиетнама»">«Өсиетнама»</option><option value="«Бір атаның балалары»">«Бір атаның балалары»</option><option value="«Сарыарқа», «Ұлдарым»">«Сарыарқа», «Ұлдарым»</option><option value="«1916»">«1916»</option><option value="«Аласапыран»">«Аласапыран»</option><option value="«Қобыз сарыны»">«Қобыз сарыны»</option><option value="Басқа шығарма">Басқа шығарма</option></select></label><label>Оқушының аты (қалауыңша)<input id="reviewName" placeholder="Атыңды жаз" type="text"/></label><label>Сыныбы<select id="reviewGrade"><option value="1-сынып">1-сынып</option><option value="2-сынып">2-сынып</option><option value="3-сынып">3-сынып</option><option value="4-сынып">4-сынып</option><option value="5-сынып">5-сынып</option><option value="6-сынып">6-сынып</option><option value="7-сынып">7-сынып</option><option value="8-сынып">8-сынып</option><option value="9-сынып">9-сынып</option><option value="10-сынып">10-сынып</option><option value="11-сынып">11-сынып</option></select></label><label>Бағалау<select id="reviewRating"><option value="5">★★★★★</option><option value="4">★★★★</option><option value="3">★★★</option><option value="2">★★</option><option value="1">★</option></select></label><label>Кітап туралы пікірің<textarea id="reviewText" placeholder="Маған бұл кітаптың ... ұнады. Мен ... үйрендім." required="True" rows="4"></textarea></label><button type="submit">Пікірді сақтау</button></form><h3>Оқырмандар пікірі</h3><div class="grade-grid" id="reviewList"></div><p class="read-note">Ескерту: пікірлер сайт серверіне жіберілмейді. Басқа телефоннан немесе компьютерден көрінбейді.</p></section></section><section class="portal-group" id="section-4"><h2 class="portal-group-title">4. Зерттеу және таным</h2><section class="section" id="class-activities">
+<h2 class="section-title">Сыныпқа арналған зерттеу тапсырмалары мен викторина</h2>
+<p class="sub">1–11-сыныптың бірін таңда. Таңдаған сыныпқа арналған зерттеу тапсырмасы мен жеке викторина ашылады. Телефоннан орындауға ыңғайлы.</p>
+<div class="activity-shell">
+<div class="activity-top">
+<div><b>Сыныбыңды таңда</b><div class="read-note">Таңдау өзгергенде тапсырмалар автоматты түрде ауысады.</div></div>
+<select aria-label="Сыныпты таңдау" id="activityGrade">
+<option value="1">1-сынып</option><option value="2">2-сынып</option><option selected="" value="3">3-сынып</option>
+<option value="4">4-сынып</option><option value="5">5-сынып</option><option value="6">6-сынып</option>
+<option value="7">7-сынып</option><option value="8">8-сынып</option><option value="9">9-сынып</option>
+<option value="10">10-сынып</option><option value="11">11-сынып</option>
+</select>
+</div>
+<div class="activity-grid">
+<div class="activity-card">
+<h3>🔎 Зерттеу тапсырмасы</h3>
+<label><b>Оқушының аты-жөні</b><input id="activityStudentName" placeholder="Аты-жөніңді жаз" style="width:100%;padding:10px;border:1px solid #cbd5d9;border-radius:9px;margin:6px 0 12px" type="text"/></label>
+<p id="researchTask"></p>
+<label for="researchAnswer"><b>Жауабың / зерттеу жазбаң</b></label>
+<textarea id="researchAnswer" placeholder="Осы жерге өз жұмысыңды жаз..."></textarea>
+<p class="read-note" id="researchPrompt"></p>
+<button class="activity-button" id="printResearch" type="button">Тапсырманы басып шығару</button>
+</div>
+<div class="activity-card">
+<h3>🧠 Сынып викторинасы</h3>
+<p class="read-note" id="quizIntro">Әр сұраққа бір дұрыс жауап таңда. Қағазда орындау үшін «Викторинаны басып шығару» батырмасын бас; соңында экранда ұпайыңды тексер.</p>
+<div id="gradeQuiz"></div>
+<div class="quiz-actions">
+<button class="secondary" id="printGradeQuiz" type="button">Викторинаны басып шығару</button><button id="checkQuiz" type="button">Жауаптарды тексеру</button>
+<button class="secondary" id="resetQuiz" type="button">Қайта орындау</button>
+</div>
+<div aria-live="polite" class="activity-feedback" id="quizFeedback">Сәттілік!</div>
+</div>
+</div>
+</div>
+</section><section class="section" id="young-explorer-passport">
+<h2 class="section-title">🎓 «Жас өлкетанушы» паспорты</h2>
+<p class="sub">Паспортты толтыру оңай: аты-жөніңді, сыныбыңды және оқыған кітабыңды жаз. Автор мен оқыған күнді қалауыңша толтыр. Содан соң А4 қағазына басып шығар.</p>
+<div class="activity-shell"><div class="activity-card">
+<div class="passport-form-grid">
+<label>Оқушының аты-жөні *<input id="passportName" placeholder="Аты-жөніңді толық жаз" type="text"/></label>
+<label>Сыныбы *<select id="passportGrade"><option value="">Сыныпты таңда</option><option value="1">1-сынып</option><option value="2">2-сынып</option><option value="3">3-сынып</option><option value="4">4-сынып</option><option value="5">5-сынып</option><option value="6">6-сынып</option><option value="7">7-сынып</option><option value="8">8-сынып</option><option value="9">9-сынып</option><option value="10">10-сынып</option><option value="11">11-сынып</option></select></label>
+<label class="wide">Оқыған кітабы *<input id="passportBook" placeholder="Мысалы: Аяулы мекен – Аягөз" type="text"/></label>
+<label class="wide">Автордың аты-жөні (қалауыңша)<input id="passportAuthor" placeholder="Авторын білсең, жаз" type="text"/></label>
+<label class="wide">Оқыған күні (қалауыңша)<input id="passportDate" type="date"/></label>
+</div>
+<div class="quiz-actions"><button id="printPassport" type="button">Паспортты басып шығару</button><button class="secondary" id="clearPassport" type="button">Тазалау</button></div>
+<p class="read-note">Басып шығару кезінде A4 қағазын таңда. Паспорт бір бетке шығарылады.</p>
+</div></div>
+</section><section class="section" id="research">
+<h2 class="section-title">Жас өлкетанушының зерттеу жолы</h2><p class="sub">Оқушы оқығанын зерттеуге айналдырады.</p>
+<div class="steps">
+<div class="step"><b>01</b><h3>ОҚЫ</h3><p>Туған өлке туралы шығарма немесе кітап таңда.</p></div>
+<div class="step"><b>02</b><h3>ЗЕРТТЕ</h3><p>Автор, тарихи дерек, жер-су атауы туралы мәлімет жина.</p></div>
+<div class="step"><b>03</b><h3>ТАНЫТ</h3><p>Постер, эссе, бейнеролик немесе таныстырылым әзірле.</p></div>
+<div class="step"><b>04</b><h3>БӨЛІС</h3><p>Жұмысыңды сыныптастарыңа және мектеп қауымына ұсын.</p></div>
+</div>
+</section><section class="section" id="quiz">
+<div class="quiz"><h2 class="section-title">Білімді тексер</h2><p>Аягөз және туған өлке туралы шағын викторина.</p>
+<label for="q1">1. Өлкетану нені зерттейді?</label><br/><select id="q1"><option value="">Жауапты таңда</option><option value="a">Туған өлкенің тарихын, табиғатын, мәдениетін</option><option value="b">Тек шет тілдерін</option><option value="c">Тек спорт түрлерін</option></select><br/>
+<label for="q2">2. «Аяулы мекен – Аягөз» кітабының авторы кім?</label><br/><select id="q2"><option value="">Жауапты таңда</option><option value="a">Абай Құнанбайұлы</option><option value="b">Бақытөмір Шалғынбай</option><option value="c">Ыбырай Алтынсарин</option></select><br/>
+<label for="q3">3. Зерттеу жұмысын неден бастаған дұрыс?</label><br/><select id="q3"><option value="">Жауапты таңда</option><option value="a">Дереккөз таңдап, сұрақ құрастырудан</option><option value="b">Дерексіз қорытынды жазудан</option><option value="c">Басқа жұмысты көшіруден</option></select><br/>
+<button onclick="checkQuiz()">Жауапты тексеру</button><div aria-live="polite" class="result" id="result"></div>
+</div>
+</section></section><section class="portal-group" id="section-5"><h2 class="portal-group-title">5. Ұсыныстар және даму жоспары</h2><section class="section" id="adal-azamat">
+<h2 class="section-title">«Адал азамат» – біртұтас тәрбие бағыты</h2>
+<p class="sub">Кітап оқу, туған өлкені зерттеу және ұлттық құндылықтарды күнделікті өмірмен байланыстыру.</p>
+<div class="panel">
+<p><b>Мақсаты:</b> оқушылардың бойында ұлттық құндылықтарды қалыптастыру, адалдыққа, отаншылдыққа, жауапкершілікке, бірлікке, еңбекқорлыққа және жаңашылдыққа тәрбиелеу.</p>
+<p>Порталдағы әр кітап пен зерттеу тапсырмасы оқушыны өз ойын дәлелдеуге, дерекке сүйенуге, туған жерін құрметтеуге және ортақ іске үлес қосуға бағыттайды.</p>
+</div>
+<div class="grade-grid" style="margin-top:15px">
+<article class="grade-card"><div class="grade-head"><h3>1. Тәуелсіздік және отаншылдық</h3><span class="tag">Құндылық</span></div><p>Туған жер тарихын оқу, мемлекеттік рәміздерді құрметтеу, елге қызмет ету.</p><div class="task">Портал тапсырмасы: «Менің Отаным – Қазақстан» тақырыбына шағын әңгіме немесе бейнеролик.</div></article>
+<article class="grade-card"><div class="grade-head"><h3>2. Бірлік және ынтымақ</h3><span class="tag">Құндылық</span></div><p>Достықты, өзара көмекті, татулық пен ортақ жауапкершілікті бағалау.</p><div class="task">Портал тапсырмасы: топпен «Аягөздің ортақ мұрасы» атты постер әзірлеу.</div></article>
+<article class="grade-card"><div class="grade-head"><h3>3. Әділдік және жауапкершілік</h3><span class="tag">Құндылық</span></div><p>Шындықты айту, дереккөзді көрсету, өз сөзі мен ісіне жауап беру.</p><div class="task">Портал тапсырмасы: оқыған шығарма бойынша дәлелді пікір жазу және дереккөзді көрсету.</div></article>
+<article class="grade-card"><div class="grade-head"><h3>4. Еңбекқорлық және кәсіби біліктілік</h3><span class="tag">Құндылық</span></div><p>Іздену, кітап оқу, зерттеу жүргізу, бастаған істі аяқтау.</p><div class="task">Портал тапсырмасы: өлкетану тақырыбында шағын зерттеу күнделігін жүргізу.</div></article>
+<article class="grade-card"><div class="grade-head"><h3>5. Жасампаздық және жаңашылдық</h3><span class="tag">Құндылық</span></div><p>Шығармашылық ойлау, жаңа идея ұсыну, цифрлық құралдарды орынды пайдалану.</p><div class="task">Портал тапсырмасы: туған өлке туралы цифрлық кітапша, карта немесе таныстырылым жасау.</div></article>
+<article class="grade-card"><div class="grade-head"><h3>6. Заң және тәртіп</h3><span class="tag">Құндылық</span></div><p>Қоғамдық тәртіпті сақтау, қауіпсіздік ережелерін орындау, өзгенің құқығын құрметтеу.</p><div class="task">Портал тапсырмасы: кітапхана және интернетті қауіпсіз пайдалану ережесін құрастыру.</div></article>
+</div>
+<div class="panel" style="margin-top:16px">
+<h3 style="margin-top:0;color:#12334a">Оқу жылындағы айлық құндылықтар</h3>
+<div class="grade-grid">
+<div><b>Қыркүйек</b><br/>Еңбекқорлық және кәсіби біліктілік</div>
+<div><b>Қазан</b><br/>Тәуелсіздік және отаншылдық</div>
+<div><b>Қараша</b><br/>Әділдік және жауапкершілік</div>
+<div><b>Желтоқсан</b><br/>Бірлік және ынтымақ</div>
+<div><b>Қаңтар</b><br/>Заң және тәртіп</div>
+<div><b>Ақпан</b><br/>Жасампаздық және жаңашылдық</div>
+<div><b>Наурыз</b><br/>Тәуелсіздік және отаншылдық</div>
+<div><b>Сәуір</b><br/>Еңбекқорлық және кәсіби біліктілік</div>
+<div><b>Мамыр</b><br/>Бірлік және ынтымақ</div>
+</div>
+</div>
+</section><section class="section" id="year-plan">
+<h2 class="section-title">9 айлық жұмыс жоспары</h2>
+<p class="sub">Қыркүйек–мамыр аралығында жүзеге асырылатын «Оқылған кітап – зерттелген өлке» жобасының кезеңдік жоспары. Әр айдың жұмысы оқуға, зерттеуге және нәтижені порталға жариялауға бағытталған.</p>
+<div class="grade-grid">
+<article class="grade-card"><div class="grade-head"><h3>Қыркүйек</h3><span class="tag">1-ай</span></div><b>«Кітаппен саяхат басталады!»</b><ul><li>Порталдың мақсаты мен бөлімдерін таныстыру.</li><li>Оқушыларды 1–11-сынып бойынша бағыттау.</li><li>«Менің сүйікті кітабым» таныстырылымы.</li><li>Оқырман күнделігін бастау, бастапқы сауалнама алу.</li></ul><div class="task"><b>Нәтиже:</b> оқырман күнделігі және бастапқы сауалнама қорытындысы.</div></article>
+<article class="grade-card"><div class="grade-head"><h3>Қазан</h3><span class="tag">2-ай</span></div><b>«Аягөзден шыққан қаламгерлер»</b><ul><li>Дулат Бабатайұлы, Мұхтар Мағауин, Толымбек Әбдірайым шығармаларымен танысу.</li><li>Қаламгерлердің өмірі мен шығармашылығын зерттеу.</li><li>«Қаламгерлер картасын» жасау.</li><li>Авторлар туралы викторина өткізу.</li></ul><div class="task"><b>Нәтиже:</b> қаламгерлер картасы және викторина жауаптары.</div></article>
+<article class="grade-card"><div class="grade-head"><h3>Қараша</h3><span class="tag">3-ай</span></div><b>«Кітап – білім бұлағы»</b><ul><li>Сыныптарға ұсынылған кітаптарды оқу.</li><li>Кейіпкерлерге мінездеме беру.</li><li>«Кітап кейіпкеріне хат» жазу.</li><li>Оқыған шығарма бойынша пікір білдіру.</li></ul><div class="task"><b>Нәтиже:</b> оқырман пікірі, кейіпкерге хат және күнделік жазбасы.</div></article>
+<article class="grade-card"><div class="grade-head"><h3>Желтоқсан</h3><span class="tag">4-ай</span></div><b>«Туған өлке – тұнған тарих»</b><ul><li>Аягөз өңірінің тарихи орындарын зерттеу.</li><li>«Аягөз – тоғыз жолдың торабы» тақырыбында мәлімет жинау.</li><li>Өлке тарихына қатысты кітаптарды қарастыру.</li><li>«Менің өлкемнің тарихы» постерін әзірлеу.</li></ul><div class="task"><b>Нәтиже:</b> тарихи постер және дереккөздер тізімі.</div></article>
+<article class="grade-card"><div class="grade-head"><h3>Қаңтар</h3><span class="tag">5-ай</span></div><b>«Табиғаты тұнған туған жер»</b><ul><li>Аягөз өңірінің табиғаты мен өсімдіктерін зерттеу.</li><li>Көгілдір тау, Мамырсу сияқты жерлер туралы ақпарат жинау.</li><li>«Туған өлкемнің табиғаты» фотоколлажын жасау.</li><li>Табиғи нысанның немесе өсімдіктің шағын паспортын әзірлеу.</li></ul><div class="task"><b>Нәтиже:</b> фотоколлаж және зерттеу паспорты.</div></article>
+<article class="grade-card"><div class="grade-head"><h3>Ақпан</h3><span class="tag">6-ай</span></div><b>«Ұлттық мұра – ұрпаққа аманат»</b><ul><li>Қазақ халқының салт-дәстүрлері мен ұлттық құндылықтарын зерттеу.</li><li>Өлкеге қатысты аңыз-әңгімелерді оқу.</li><li>«Аягөздің рухани мұрасы» бөліміне материал жинау.</li><li>Отбасылық шежіре немесе ұлттық мұра туралы шағын жұмыс дайындау.</li></ul><div class="task"><b>Нәтиже:</b> ұлттық мұра туралы таныстырылым немесе шағын зерттеу.</div></article>
+<article class="grade-card"><div class="grade-head"><h3>Наурыз</h3><span class="tag">7-ай</span></div><b>«Оқыдым, зерттедім, таныттым!»</b><ul><li>Оқушылардың зерттеу жұмыстарын ұйымдастыру.</li><li>«Бір кітап – бір зерттеу» тапсырмасын орындау.</li><li>Бейнеролик, презентация немесе буклет әзірлеу.</li><li>«Жас өлкетанушы» жұмыстарын порталға орналастыру.</li></ul><div class="task"><b>Нәтиже:</b> дайын зерттеу жұмысы және цифрлық материал.</div></article>
+<article class="grade-card"><div class="grade-head"><h3>Сәуір</h3><span class="tag">8-ай</span></div><b>«Білім бәйгесі – зерде додасы»</b><ul><li>«Аягөзді қаншалықты білеміз?» онлайн викторинасын өткізу.</li><li>Кітап бойынша сұрақ-жауап сайысын ұйымдастыру.</li><li>Сыныптар арасында зияткерлік ойын өткізу.</li><li>Белсенді оқырмандарды анықтау.</li></ul><div class="task"><b>Нәтиже:</b> викторина қорытындысы және белсенді оқырмандар тізімі.</div></article>
+<article class="grade-card"><div class="grade-head"><h3>Мамыр</h3><span class="tag">9-ай</span></div><b>«Оқылған кітап – ортақ жетістік»</b><ul><li>Жыл бойғы жұмыстарды қорытындылау.</li><li>Оқырман күнделіктерін жинақтау.</li><li>Үздік зерттеу және шығармашылық жұмыстар көрмесін ұйымдастыру.</li><li>Қорытынды сауалнама алып, белсенді қатысушыларды марапаттау.</li></ul><div class="task"><b>Нәтиже:</b> жылдық қорытынды, электронды көрме және марапаттау.</div></article>
+</div>
+<div class="panel" style="margin-top:18px"><b>Жобаның күтілетін нәтижесі:</b><p>Оқушылардың кітап оқуға қызығушылығы артады; Аягөз өңірінің тарихы, әдебиеті, табиғаты мен мәдени мұрасы туралы білімдері кеңейеді; зерттеу, ақпарат іздеу, талдау және шығармашылық таныстыру дағдылары дамиды. Жыл бойы орындалған жұмыстар порталдың тиісті бөлімдеріне кезең-кезеңімен жарияланады.</p></div>
+</section><div class="suggestion-panel" id="suggestions"><h3>Оқушы мен мұғалім ұсыныстары</h3><p>Кітап, зерттеу тақырыбы немесе портал жұмысын жақсарту туралы ұсынысыңызды қалдырыңыз.</p><form id="suggestionForm"><div class="suggestion-grid"><div><label>Ұсыныс түрі</label><select name="kind" required="required"><option value="book">Жаңа кітап ұсыну</option><option value="author">Аягөз ақын-жазушылары туралы</option><option value="method">Әдістемелік ұсыныс</option><option value="portal">Порталды жақсарту</option><option value="other">Басқа ұсыныс</option></select></div><div><label>Аты-жөні (міндетті емес)</label><input name="person" placeholder="Аты-жөніңіз"/></div><div><label>Сыныбы / қызметі</label><input name="role" placeholder="Мысалы: 3 «В» сыныбы / мұғалім"/></div><div><label>Тақырып</label><input name="topic" placeholder="Ұсыныс тақырыбы" required="required"/></div></div><div><label>Ұсыныс мазмұны</label><textarea name="details" placeholder="Ұсынысыңызды жазыңыз..." required="required"></textarea></div><button type="submit">Ұсынысты сақтау</button></form><div aria-live="polite" id="suggestionList"></div><p class="small-note">Ескерту: ұсыныстар осы құрылғының браузерінде ғана сақталады. Басқа құрылғыларға автоматты түрде жіберілмейді.</p></div></section><section class="portal-group" id="section-6"><h2 class="portal-group-title">6. Менің жетістіктерім</h2><section class="section" id="my-progress">
+<h2 class="section-title">Менің «Жас өлкетанушы» жетістіктерім</h2><p class="sub">Орындаған жұмыстарыңды белгілеп отыр. Белгілер осы құрылғыдағы браузерде сақталады.</p>
+<div class="progress-shell"><div class="progress-head"><b>Менің зерттеу жолым</b><strong id="progressPercent">0%</strong></div><div class="progress-track"><div id="progressBar"></div></div>
+<div class="progress-list">
+<label><input class="milestone" type="checkbox" value="book"/> Туған өлке туралы шығарма оқыдым</label><label><input class="milestone" type="checkbox" value="author"/> Ақын немесе жазушы туралы мәлімет жинадым</label><label><input class="milestone" type="checkbox" value="nature"/> Аягөз өңірінің табиғи нысанын зерттедім</label><label><input class="milestone" type="checkbox" value="quiz"/> Сынып викторинасын орындадым</label><label><input class="milestone" type="checkbox" value="project"/> Зерттеу жұмысымды дайындадым</label><label><input class="milestone" type="checkbox" value="share"/> Жұмысымды сыныпта таныстырдым</label>
+</div><div class="quiz-actions"><button id="printProgress" type="button">Жетістігімді басып шығару</button><button class="secondary" id="resetProgress" type="button">Белгілерді тазалау</button></div><p class="read-note">Ескерту: бұл есеп тек осы телефонда немесе компьютерде сақталады. Басқа құрылғыға автоматты түрде көшпейді.</p></div>
+</section></section></main>
+<footer><strong>«Оқылған кітап – зерттелген өлке»</strong><br/>«№5 жалпы орта білім беретін мектебі» КММ · 2026–2027 оқу жылы<br/>ОҚЫ • ЗЕРТТЕ • ТАНЫ • ТАНЫТ</footer>
+<script>
+const search=document.getElementById('search'),level=document.getElementById('level'),cards=[...document.querySelectorAll('.grade-card')];
+function filterCards(){const q=search.value.toLocaleLowerCase('kk').trim(),l=level.value;let count=0;cards.forEach(c=>{const okLevel=l==='all'||c.dataset.level===l;const okText=c.innerText.toLocaleLowerCase('kk').includes(q);c.hidden=!(okLevel&&okText);if(!c.hidden)count++;});document.getElementById('noResults').hidden=count!==0;}
+search.addEventListener('input',filterCards);level.addEventListener('change',filterCards);
+function checkQuiz(){let score=0;if(document.getElementById('q1').value==='a')score++;if(document.getElementById('q2').value==='b')score++;if(document.getElementById('q3').value==='a')score++;document.getElementById('result').textContent='Нәтиже: '+score+'/3 дұрыс жауап. '+(score===3?'Жарайсың!': 'Жауаптарды қайта қарап көр!');}
+</script>
+<script>
+const gradeActivityData = {"1": {"task": "Сурет сал: «Менің туған өлкем – Аягөз». Суретіңе табиғаттың кемінде 3 нысанын бейнеле.", "prompt": "Суретіңе қандай үш табиғат нысанын қостың? Олардың біреуін сипатта.", "questions": [["Туған өлке дегеніміз не?", ["Адам дүниеге келіп, өсіп-өнген жер", "Тек басқа мемлекет", "Тек үлкен қала", "Тек мектеп ауласы"], 0, "Туған өлке – адамның туған, өскен жері."], ["Табиғатты қорғауға қай әрекет көмектеседі?", ["Қоқысты жерге тастау", "Ағаш бұтағын сындыру", "Қоқысты арнайы жәшікке салу", "Гүлді жұлу"], 2, "Қоқысты арнайы жәшікке салу қоршаған ортаны таза сақтайды."], ["Кітап оқығанда не істейміз?", ["Мәтінді мұқият оқимыз", "Кітапты жыртамыз", "Беттерін шимайлаймыз", "Кітапты лақтырамыз"], 0, "Кітапты ұқыпты ұстап, мәтінді мұқият оқимыз."]]}, "2": {"task": "«Менің Аягөзім» тақырыбында 4 сөйлем жаз. Туған жеріңнің табиғаты мен бір жақсы қасиетін ата.", "prompt": "Аягөздің табиғаты туралы қандай мәлімет білдің? 4 сөйлеммен жаз.", "questions": [["Туған өлке туралы мәтіннің негізгі тақырыбы қандай болуы мүмкін?", ["Ғарыш кемесін құрастыру", "Өз ауылыңның немесе қалаңның табиғаты", "Теңіздегі балық аулау ғана", "Бөтен елдің тарихы ғана"], 1, "Туған өлке мәтіні өзің тұратын жердің табиғатын таныстырады."], ["Өлкетанушы не істейді?", ["Өлкені зерттейді", "Тек ойын ойнайды", "Кітапты жасырады", "Табиғатты бүлдіреді"], 0, "Өлкетанушы туған жердің тарихын, табиғатын және мәдениетін зерттейді."], ["Кітапқа дұрыс күтім жасау жолын белгіле.", ["Беттерін бүктеу", "Мұқабасын жырту", "Таза қолмен ұстап, ұқыпты сақтау", "Суға салу"], 2, "Кітапты таза әрі ұқыпты сақтау қажет."]]}, "3": {"task": "«Аягөз – менің туған өлкем» тақырыбында шағын зерттеу жаса. 3 дерек жина: табиғаты, тарихы, елді мекені туралы.", "prompt": "Жинаған деректеріңнің ішінен ең қызықтысын жаз және оның дереккөзін көрсет.", "questions": [["«Аяулы мекен – Аягөз» кітабының авторы кім?", ["Дулат Бабатайұлы", "Бақытөмір Шалғынбай", "Абай Құнанбайұлы", "Ыбырай Алтынсарин"], 1, "«Аяулы мекен – Аягөз» кітабының библиографиялық дерегінде авторы Бақытөмір Шалғынбай деп көрсетілген."], ["Дулат Бабатайұлы қандай әдеби тұлға?", ["Ақын", "Суретші", "Композитор ғана", "Ғалым-физик"], 0, "Дулат Бабатайұлы – қазақтың көрнекті ақыны."], ["Зерттеу жұмысында дереккөзді не үшін көрсету керек?", ["Жұмысты ұзартып жазу үшін", "Ақпараттың қайдан алынғанын көрсету үшін", "Суретті көбейту үшін", "Тақырыпты өзгерту үшін"], 1, "Дереккөз ақпараттың қайдан алынғанын тексеруге мүмкіндік береді."]]}, "4": {"task": "Аягөз өңірінің табиғаты туралы шағын ақпараттық мәтін құрастыр. Мәтінде кіріспе, негізгі бөлім және қорытынды болсын.", "prompt": "Туған өлке табиғатын қорғаудың екі жолын ұсын.", "questions": [["Дулат Бабатайұлы кім?", ["Ақын", "Саяхатшы-теңізші", "Сәулетші", "Дәрігер"], 0, "Дулат Бабатайұлы – ақын."], ["Өлкетану зерттеуінде қандай дерек сенімдірек?", ["Авторсыз белгісіз жазба", "Дереккөзі көрсетілген кітапхана немесе ресми басылым", "Тексерілмеген пікір", "Аты-жөні белгісіз хабарлама"], 1, "Дереккөзі көрсетілген кітапхана не ресми басылым мәліметті тексеруге көмектеседі."], ["Табиғатты қорғауға қайсысы жатады?", ["Суды босқа ағызу", "Қоқысты өзенге тастау", "Өсімдіктерді күту және қоқысты сұрыптау", "Ағаштарды себепсіз кесу"], 2, "Өсімдіктерді күту және қалдықтарды сұрыптау табиғатты қорғауға жатады."]]}, "5": {"task": "Аягөз өңірінің бір тарихи немесе табиғи нысанын таңда. Оның орналасуы, ерекшелігі және маңызы туралы 5–6 сөйлемдік ақпараттық карточка жаса.", "prompt": "Таңдаған нысаның туралы қандай екі дереккөз пайдаландың? Оларды жаз.", "questions": [["«Өсиетнама» жинағы қай ақынның есімімен байланысты?", ["Дулат Бабатайұлы", "Мұхтар Мағауин", "Толымбек Әбдірайым", "Төлеу Көбдіков"], 0, "«Өсиетнама» – Дулат Бабатайұлының шығармалар жинағы."], ["Тарихи деректі көркем шығармадан ажыратудың дұрыс жолы қандай?", ["Авторын ғана қарау", "Дереккөзін, мақсатын және мазмұнын салыстыру", "Тек суретіне қарау", "Бірінші оқыған пікірге сену"], 1, "Дереккөз бен мәтіннің мақсатын салыстыру оның сипатын анықтауға көмектеседі."], ["Өлкенің табиғи мұрасы дегеніміз не?", ["Тек жаңа ғимараттар", "Табиғи ландшафт, өзен, тау, өсімдік пен жануарлар дүниесі", "Тек жол белгілері", "Тек сауда орындары"], 1, "Табиғи мұраға ландшафт, су нысандары, өсімдіктер мен жануарлар жатады."]]}, "6": {"task": "Аягөз өңірінің табиғаты мен әдебиеттегі табиғат суреттеуін салыстыр. Бір табиғи нысанды таңдап, оны көркем тілмен 5–7 сөйлемде сипатта.", "prompt": "Көркем сипаттау мен ғылыми сипаттаудың екі айырмашылығын жаз.", "questions": [["Мұхтар Мағауин қай салада танылған?", ["Жазушы", "Спорт төрешісі", "Сәулетші", "Әнші ғана"], 0, "Мұхтар Мағауин – қазақ жазушысы."], ["Табиғатты көркем сипаттаудың басты ерекшелігі қандай?", ["Тек сандық өлшем беру", "Бейнелі сөздер мен авторлық әсерді қолдану", "Тек кесте құрастыру", "Тек анықтама жазу"], 1, "Көркем мәтінде бейнелі сөздер мен авторлық әсер қолданылады."], ["Зерттеу қорытындысында не болуы керек?", ["Тек тақырып атауы", "Жиналған деректерге сүйенген тұжырым", "Дерексіз болжам", "Басқа жұмыстың көшірмесі"], 1, "Қорытынды зерттеу барысында алынған деректерге сүйенеді."]]}, "7": {"task": "Аягөз өңірінен шыққан бір ақын-жазушыны таңдап, өмірбаяны, шығармалары және туған өлке тақырыбымен байланысы бойынша зерттеу парағын толтыр.", "prompt": "Таңдаған қаламгердің бір шығармасын атап, оның тақырыбы мен негізгі ойын түсіндір.", "questions": [["Төлеу Көбдіков қандай өнерімен танылған?", ["Халық ақыны, айтыскер", "Суретші", "Мүсінші", "Ғарышкер"], 0, "Төлеу Көбдіков – халық ақыны, айтыскер."], ["Қаламгердің өмірбаянын зерттегенде нені нақтылау маңызды?", ["Тек сыртқы келбетін", "Туған жері, өмір жолы және шығармашылық еңбегін", "Сүйікті түсін", "Күнделікті ас мәзірін"], 1, "Өмірбаян туған жері, өмір жолы мен шығармашылығы туралы деректерді қамтиды."], ["Библиографиялық мәлімет нені көрсетеді?", ["Кітаптың авторы, атауы, басылым деректері", "Оқырманның көңіл күйі", "Кітапхана бөлмесінің түсі", "Кітаптың салмағы ғана"], 0, "Библиографиялық жазба кітапты анықтауға қажетті автор, атау және басылым деректерін береді."]]}, "8": {"task": "«Аягөз өңірінің әдеби картасын» жаса. Кемінде 3 қаламгерді, олардың туған немесе еңбек еткен жерін және бір шығармасын көрсет.", "prompt": "Әдеби картаға енгізген әр тұлға бойынша дереккөзді көрсетіп, мәліметтің нақтылығын түсіндір.", "questions": [["Мұхтар Мағауиннің әдебиеттегі негізгі қызметі қандай?", ["Жазушы", "Композитор", "Суретші", "Спортшы"], 0, "Мұхтар Мағауин – жазушы."], ["Әдеби өлкетану нені байланыстырады?", ["Әдеби шығармалар мен туған өлке деректерін", "Тек математика мен спортты", "Тек ауа райы мен сауданы", "Тек шет тілдері грамматикасын"], 0, "Әдеби өлкетану әдебиетті туған өлкенің тарихы, табиғаты және тұлғаларымен байланыстырады."], ["Дәйексөзді пайдаланғанда не істеу керек?", ["Авторын және дереккөзін көрсету", "Авторын алып тастау", "Сөзін өзгертіп, тырнақшаға алу", "Қайдан алынғанын жасырын қалдыру"], 0, "Дәйексөздің авторы мен алынған дереккөзі міндетті түрде көрсетіледі."]]}, "9": {"task": "Аягөз өңірінің бір тарихи кезеңін таңда. Екі дереккөзге сүйеніп, 8–10 сөйлемдік тарихи-өлкетану мәтінін жаз.", "prompt": "Екі дереккөздегі мәліметтер сәйкес келді ме? Ұқсастығы мен айырмашылығын көрсет.", "questions": [["«Тауарих хамса» еңбегінің авторы кім?", ["Құрбанғали Халиди", "Мұхтар Мағауин", "Дулат Бабатайұлы", "Төлеу Көбдіков"], 0, "«Тауарих хамса» еңбегінің авторы – Құрбанғали Халиди."], ["Тарихи зерттеуде деректерді салыстыру не үшін қажет?", ["Ақпараттың дұрыстығын тексеру үшін", "Мәтінді әдейі күрделендіру үшін", "Бір деректі ғана қалдыру үшін", "Зерттеу тақырыбын жасыру үшін"], 0, "Деректерді салыстыру сәйкессіздіктерді байқап, мәліметті тексеруге көмектеседі."], ["Өлкетану жобасының нәтижесі қай түрде ұсынылуы мүмкін?", ["Зерттеу есебі, карта немесе таныстырылым", "Тек бос парақ", "Тақырыпсыз сурет", "Дереккөзсіз көшірме"], 0, "Зерттеу нәтижесін есеп, карта, таныстырылым сияқты форматта ұсынуға болады."]]}, "10": {"task": "«Аягөз – тарихи жады мен табиғи мұра мекені» тақырыбында шағын зерттеу жобасын әзірле. Мақсат, зерттеу сұрағы, дереккөздер және қорытындыны көрсет.", "prompt": "Зерттеуіңнің негізгі сұрағын жаз және оған қандай деректер арқылы жауап бергеніңді түсіндір.", "questions": [["Мұхтар Мағауиннің белгілі тарихи романы қайсы?", ["«Аласапыран»", "«Менің атым Қожа»", "«Көксерек»", "«Ұшқан ұя»"], 0, "«Аласапыран» – Мұхтар Мағауиннің тарихи романы."], ["Зерттеу сұрағы қандай болуы керек?", ["Нақты әрі зерттеу арқылы жауап беруге болатын", "Өте жалпылама және шексіз", "Жауабы алдын ала берілген", "Тақырыпқа қатысы жоқ"], 0, "Зерттеу сұрағы нақты, түсінікті және дерек арқылы жауап беруге болатын болуы керек."], ["Ғылыми адалдыққа қай әрекет жатады?", ["Пайдаланған дереккөздерді көрсету", "Басқа адамның жұмысын өз атынан ұсыну", "Деректі ойдан қосу", "Қате мәліметті әдейі жасыру"], 0, "Ғылыми адалдық пайдаланылған дереккөздерді көрсетуді талап етеді."]]}, "11": {"task": "«Оқылған кітап – зерттелген өлке» жобасына қорытынды зерттеу дайында. Аягөз өңірінің бір тұлғасын немесе табиғи-тарихи нысанын таңдап, кемінде 3 дереккөзбен дәлелде.", "prompt": "Зерттеуіңнің жаңалығы, дереккөздердің сенімділігі және өлке үшін маңызы туралы қорытынды жаз.", "questions": [["Әдеби-өлкетану зерттеуінің басты мақсаты қандай?", ["Әдеби мұра арқылы туған өлкені танып, зерттеу", "Тек шығарма атауларын жаттау", "Тек суреттер жинау", "Дереккөздерді пайдаланбау"], 0, "Әдеби-өлкетану туған өлкені әдеби мұрамен байланыстыра зерттейді."], ["Дереккөздің сенімділігін бағалағанда нені ескеру қажет?", ["Авторын, жарияланған орнын, дәлелдерін және уақытын", "Тек мәтіннің түсін", "Бет санын ғана", "Оқырман пікірін ғана"], 0, "Сенімділік автор, басылым, дәлел және жарияланған уақыт арқылы бағаланады."], ["Зерттеу қорытындысы қандай болуы керек?", ["Дәлелдерге сүйенген жинақы тұжырым", "Жаңа дерексіз пікір", "Тек тақырыпты қайталау", "Басқа зерттеуді көшіру"], 0, "Қорытынды зерттеу деректеріне сүйеніп, негізгі нәтижені жинақтайды."]]}};
+const activityGrade = document.getElementById('activityGrade');
+const researchTask = document.getElementById('researchTask');
+const researchPrompt = document.getElementById('researchPrompt');
+const researchAnswer = document.getElementById('researchAnswer');
+const gradeQuiz = document.getElementById('gradeQuiz');
+const quizFeedback = document.getElementById('quizFeedback');
+
+function renderGradeActivity(){
+  const grade = activityGrade.value;
+  const data = gradeActivityData[grade];
+  researchTask.textContent = data.task;
+  researchPrompt.textContent = data.prompt;
+  researchAnswer.value = '';
+  quizFeedback.textContent = 'Сәттілік! Барлық сұраққа жауап беріп, тексеру батырмасын бас.';
+  gradeQuiz.innerHTML = '';
+  data.questions.forEach((q, i) => {
+    const block = document.createElement('div');
+    block.className = 'quiz-question';
+    const title = document.createElement('p');
+    title.textContent = (i+1) + '. ' + q[0];
+    block.appendChild(title);
+    q[1].forEach((option, j) => {
+      const label = document.createElement('label');
+      label.className = 'quiz-option';
+      const radio = document.createElement('input');
+      radio.type = 'radio'; radio.name = 'grade-q-' + i; radio.value = j;
+      const span = document.createElement('span'); span.textContent = option;
+      label.appendChild(radio); label.appendChild(span); block.appendChild(label);
+    });
+    gradeQuiz.appendChild(block);
+  });
+}
+activityGrade.addEventListener('change', renderGradeActivity);
+document.getElementById('checkQuiz').addEventListener('click', () => {
+  const data = gradeActivityData[activityGrade.value];
+  let score = 0, answered = 0, details = [];
+  data.questions.forEach((q, i) => {
+    const chosen = document.querySelector('input[name="grade-q-' + i + '"]:checked');
+    if (chosen) {
+      answered++;
+      if (Number(chosen.value) === q[2]) score++;
+      details.push((i+1) + '-сұрақ: ' + q[3]);
+    } else details.push((i+1) + '-сұрақ: жауап таңдалмаған.');
+  });
+  if (answered < data.questions.length) {
+    quizFeedback.textContent = 'Әзірге ' + answered + '/' + data.questions.length + ' сұраққа жауап бердің. Барлық сұрақты белгіле.';
+    return;
+  }
+  quizFeedback.innerHTML = '';
+  const scoreLine = document.createElement('b');
+  scoreLine.textContent = 'Нәтиже: ' + score + ' / ' + data.questions.length + ' ұпай.';
+  quizFeedback.appendChild(scoreLine);
+  details.forEach(t => { const p = document.createElement('p'); p.textContent = t; quizFeedback.appendChild(p); });
+});
+document.getElementById('resetQuiz').addEventListener('click', renderGradeActivity);
+document.getElementById('printResearch').addEventListener('click', () => {
+  const grade = activityGrade.value, data = gradeActivityData[grade];
+  const safe = v => String(v || '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const w = window.open('', '_blank');
+  if (!w) { alert('Браузерде басып шығару терезесін ашуға рұқсат беріңіз.'); return; }
+  w.document.write(`<!doctype html><html lang="kk"><head><meta charset="utf-8"><title>Зерттеу тапсырмасы</title><style>@page{size:A4;margin:18mm}body{font:14pt Arial;line-height:1.6;color:#172033}h1{text-align:center;color:#244a43;font-size:20pt}.meta{margin:16px 0 24px}.line{border-bottom:1px solid #777;height:32px}.task{border:1px solid #bbb;padding:14px;border-radius:8px}.small{font-size:11pt;color:#555}</style></head><body><h1>${grade}-сынып. Зерттеу тапсырмасы</h1><div class="meta">Оқушының аты-жөні: ${safe(document.getElementById('activityStudentName').value)}<br>Сыныбы: ${grade}-сынып</div><div class="task"><b>Тапсырма:</b><p>${safe(data.task)}</p><b>Ойлан және орында:</b><p>${safe(data.prompt)}</p></div><p class="small">Жауабыңды төмендегі жолдарға жаз.</p>${'<div class="line"></div>'.repeat(9)}<p>Мұғалімнің белгісі: __________________</p></body></html>`);
+  w.document.close(); w.focus(); setTimeout(() => w.print(), 250);
+});
+document.getElementById('printGradeQuiz').addEventListener('click', () => {
+  const grade=activityGrade.value, data=gradeActivityData[grade];
+  const safe=v=>String(v||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const w=window.open('','_blank'); if(!w){alert('Басып шығару терезесін ашуға рұқсат беріңіз.');return;}
+  let body=data.questions.map((q,i)=>`<div class="q"><b>${i+1}. ${safe(q[0])}</b>${q[1].map((o,j)=>`<p>□ ${'АБВГ'[j]}. ${safe(o)}</p>`).join('')}<p class="answer">Жауабы: __________________</p></div>`).join('');
+  w.document.write(`<!doctype html><html lang="kk"><head><meta charset="utf-8"><title>${grade}-сынып викторинасы</title><style>@page{size:A4;margin:16mm}body{font:12pt Arial;line-height:1.45}h1{text-align:center;color:#244a43}.q{margin:16px 0;break-inside:avoid}.q p{margin:5px 0 5px 18px}.answer{border-bottom:1px solid #777;padding-bottom:5px}</style></head><body><h1>${grade}-сынып. Сынып викторинасы</h1><p>Оқушының аты-жөні: ${safe(document.getElementById('activityStudentName').value)}　　Күні: ______________</p>${body}<p>Ұпай: ____ / ${data.questions.length}</p></body></html>`);
+  w.document.close(); w.focus(); setTimeout(()=>w.print(),250);
+});
+renderGradeActivity();
+</script>
+<script>
+(function(){
+ const get=id=>document.getElementById(id);
+ get('printPassport').addEventListener('click',()=>{
+   const name=get('passportName').value.trim(), grade=get('passportGrade').value, book=get('passportBook').value.trim(), author=get('passportAuthor').value.trim(), date=get('passportDate').value;
+   if(!name||!grade||!book){alert('Аты-жөніңді, сыныбыңды және оқыған кітабыңды толтыр.');return;}
+   const esc=v=>String(v||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+   const w=window.open('','_blank'); if(!w){alert('Браузерде басып шығару терезесін ашуға рұқсат бер.');return;}
+   w.document.write(`<!doctype html><html lang="kk"><head><meta charset="utf-8"><title>Жас өлкетанушы паспорты</title><style>@page{size:A4 portrait;margin:18mm}body{font-family:Arial,sans-serif;color:#173247;text-align:center;padding:12mm 8mm}.frame{border:3px double #b78b32;border-radius:18px;padding:22mm 12mm;min-height:210mm;position:relative}h1{font-size:25pt;color:#17465b;margin:0 0 8px}.subtitle{font-size:14pt;color:#8a6724;margin-bottom:24px}.field{text-align:left;font-size:15pt;margin:22px 0;border-bottom:1px solid #777;padding:8px 2px}.label{font-weight:bold}.motto{font-size:13pt;letter-spacing:2px;margin-top:30px;color:#8a6724}.seal{margin:30px auto 0;border:1px dashed #9a8b68;border-radius:50%;width:100px;height:100px;display:flex;align-items:center;justify-content:center;font-size:10pt;color:#7c6b4a}.foot{position:absolute;bottom:12mm;left:0;right:0;font-size:10pt;color:#667}</style></head><body><div class="frame"><h1>«ЖАС ӨЛКЕТАНУШЫ»</h1><div class="subtitle">ЗЕРТТЕУШІ ПАСПОРТЫ</div><p>«Оқылған кітап – зерттелген өлке» жобасы</p><div class="field"><span class="label">Аты-жөні:</span> ${esc(name)}</div><div class="field"><span class="label">Сыныбы:</span> ${esc(grade)}-сынып</div><div class="field"><span class="label">Оқыған кітабы:</span> ${esc(book)}</div>${author ? `<div class="field"><span class="label">Автор:</span> ${esc(author)}</div>` : ''}${date ? `<div class="field"><span class="label">Оқыған күні:</span> ${esc(date)}</div>` : ''}<div class="seal">ЖАС<br>ӨЛКЕТАНУШЫ</div><div class="motto">ОҚЫ • ЗЕРТТЕ • ТАНЫ • ТАНЫТ</div><div class="foot">«№5 жалпы орта білім беретін мектебі» КММ · Аягөз ауданы · Абай облысы</div></div></body></html>`);
+   w.document.close();w.focus();setTimeout(()=>w.print(),250);
+ });
+ get('clearPassport').addEventListener('click',()=>{['passportName','passportGrade','passportBook','passportAuthor','passportDate'].forEach(id=>get(id).value='');});
+})();
+</script>
+<script>
+(function(){
+ const checks=[...document.querySelectorAll('.milestone')];const key='ayagozYoungExplorerProgressV1';
+ const pct=document.getElementById('progressPercent'),bar=document.getElementById('progressBar');
+ function update(){const n=checks.filter(x=>x.checked).length;const value=Math.round(n/checks.length*100);pct.textContent=value+'%';bar.style.width=value+'%';try{localStorage.setItem(key,JSON.stringify(checks.filter(x=>x.checked).map(x=>x.value)));}catch(e){}}
+ try{const saved=JSON.parse(localStorage.getItem(key)||'[]');checks.forEach(x=>x.checked=saved.includes(x.value));}catch(e){}
+ checks.forEach(x=>x.addEventListener('change',update));update();
+ document.getElementById('resetProgress').addEventListener('click',()=>{if(!confirm('Жетістік белгілерін тазалайсыз ба?'))return;checks.forEach(x=>x.checked=false);update();});
+ document.getElementById('printProgress').addEventListener('click',()=>{const done=checks.filter(x=>x.checked).map(x=>'✓ '+x.parentElement.textContent.trim());const pending=checks.filter(x=>!x.checked).map(x=>'□ '+x.parentElement.textContent.trim());const w=window.open('','_blank');if(!w){alert('Басып шығару терезесін ашуға рұқсат беріңіз.');return;}w.document.write('<!doctype html><html lang="kk"><meta charset="utf-8"><title>Жетістіктерім</title><style>body{font:16px Arial;padding:28px;line-height:1.7}h1{color:#12334a}li{margin:8px 0}</style><h1>«Жас өлкетанушы» жетістіктері</h1><p>«Оқылған кітап – зерттелген өлке» жобасы</p><p>Орындалған жұмыс: '+checks.filter(x=>x.checked).length+'/'+checks.length+'</p><h2>Орындалды</h2><ul>'+done.map(x=>'<li>'+x+'</li>').join('')+'</ul><h2>Алдағы мақсаттар</h2><ul>'+pending.map(x=>'<li>'+x+'</li>').join('')+'</ul></html>');w.document.close();w.focus();w.print();});
+})();
+</script>
+<script>
+(function(){
+ const key='ayagozBookReviews_v1';
+ const form=document.getElementById('reviewForm');
+ const list=document.getElementById('reviewList');
+ if(!form||!list)return;
+ function get(){try{return JSON.parse(localStorage.getItem(key)||'[]')}catch(e){return []}}
+ function draw(){list.innerHTML='';const items=get().slice().reverse();
+  if(!items.length){list.innerHTML='<p class="read-note">Әзірге пікір жоқ. Алғашқы пікірді сен қалдыр!</p>';return;}
+  items.forEach(item=>{const card=document.createElement('article');card.className='review-card';
+   const title=document.createElement('h4');title.textContent=item.book;card.appendChild(title);
+   const meta=document.createElement('small');meta.textContent=(item.name?item.name+' · ':'')+item.grade+' · '+'★'.repeat(item.rating);card.appendChild(meta);
+   const body=document.createElement('p');body.textContent=item.text;card.appendChild(body);list.appendChild(card);
+  });
+ }
+ form.addEventListener('submit',function(e){e.preventDefault();const text=document.getElementById('reviewText').value.trim();if(!text)return;
+  const item={book:document.getElementById('reviewBook').value,name:document.getElementById('reviewName').value.trim(),grade:document.getElementById('reviewGrade').value,rating:Number(document.getElementById('reviewRating').value),text:text,date:new Date().toISOString()};
+  const items=get();items.push(item);try{localStorage.setItem(key,JSON.stringify(items));form.reset();draw();}catch(err){alert('Пікірді сақтау мүмкін болмады. Браузер жадына рұқсат беріңіз.');}
+ });draw();
+})();
+</script><script>
+(function(){
+ const form=document.getElementById('suggestionForm');
+ const list=document.getElementById('suggestionList');
+ if(!form||!list)return;
+ const key='ayagozPortalSuggestions_v1';
+ const labels={book:'Жаңа кітап ұсыну',author:'Аягөз ақын-жазушылары туралы',method:'Әдістемелік ұсыныс',portal:'Порталды жақсарту',other:'Басқа ұсыныс'};
+ function render(){
+  let items=[];try{items=JSON.parse(localStorage.getItem(key)||'[]')}catch(e){}
+  list.innerHTML='';
+  if(!items.length){list.innerHTML='<p class="small-note">Әзірге ұсыныс жоқ.</p>';return;}
+  items.slice().reverse().forEach(x=>{const d=document.createElement('div');d.className='suggestion-item';const title=document.createElement('strong');title.textContent=(labels[x.kind]||'Ұсыныс')+' — '+x.topic;d.appendChild(title);const meta=document.createElement('p');meta.textContent=[x.person,x.role].filter(Boolean).join(' · ');d.appendChild(meta);const body=document.createElement('p');body.textContent=x.details;d.appendChild(body);list.appendChild(d);});
+ }
+ form.addEventListener('submit',function(e){e.preventDefault();const data=new FormData(form);const item={kind:data.get('kind'),person:data.get('person'),role:data.get('role'),topic:data.get('topic'),details:data.get('details'),date:new Date().toISOString()};let items=[];try{items=JSON.parse(localStorage.getItem(key)||'[]')}catch(e){}items.push(item);localStorage.setItem(key,JSON.stringify(items));form.reset();render();alert('Ұсынысыңыз осы құрылғыда сақталды.');});
+ render();
+})();
+</script></body></html>
